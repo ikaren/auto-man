@@ -7,9 +7,19 @@
         <groupId>${GROUP_ID}</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>${PROJECT_NAME}-infra</artifactId>
-    
+    <artifactId>${PROJECT_NAME}-facade</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.hans.jhd.infra.themis</groupId>
+            <artifactId>themis-service</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.albert.common</groupId>
+            <artifactId>domain</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

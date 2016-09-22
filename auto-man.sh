@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+#================================================================================
+# Auto-Man script by Jason <xiayuqing123@hotmail.com>
+# auto build maven project with DDD.
+# https://github.com/xiayuqing
+# $Id$
+#================================================================================
+
 HOME="${BASH_SOURCE-$0}"
 HOME="$(dirname "${HOME}")"
 HOME="$(cd "${HOME}"; pwd)"
@@ -95,7 +102,7 @@ cp ./resources/parent-pom.xml $PROJECT_HOME/pom.xml
 
 # create core
 mkdir -p ${CORE_LAYER_DIR}
-cp ./resources/sub-module-pom.xml ${CORE_LAYER_DIR}/pom.xml
+cp ./resources/core/core-pom.xml ${CORE_LAYER_DIR}/pom.xml
 # java
 mkdir -p ${CORE_LAYER_DIR}/src/main/java$PACKAGE_BASE_DIR/core/domain
 mkdir -p ${CORE_LAYER_DIR}/src/main/java$PACKAGE_BASE_DIR/core/repository
@@ -105,8 +112,57 @@ mkdir -p ${CORE_LAYER_DIR}/src/main/java$PACKAGE_BASE_DIR/core/vo
 mkdir -p ${CORE_LAYER_DIR}/src/main/java$PACKAGE_BASE_DIR/core/constants
 # resources
 mkdir -p ${CORE_LAYER_DIR}/src/main/resources/spring/
-cp ./resources/core/core-context.xml ${CORE_LAYER_DIR}/src/main/resources/spring/
+cp ./resources/module-context.xml ${CORE_LAYER_DIR}/src/main/resources/spring/core-context.xml
 cp ./resources/core/root-core.xml ${CORE_LAYER_DIR}/src/main/resources/
+
 # create infra
-mkdir -p ${CORE_LAYER_DIR}/src/main/java$PACKAGE_BASE_DIR/sql
-mkdir -p ${CORE_LAYER_DIR}/src/main/resources/mybatis/mapper
+mkdir -p ${INFRA_LAYER_DIR}
+cp ./resources/infra/infra-pom.xml ${INFRA_LAYER_DIR}/pom.xml
+# java
+mkdir -p ${INFRA_LAYER_DIR}/src/main/java$PACKAGE_BASE_DIR/infra/sql
+# resources
+mkdir -p ${INFRA_LAYER_DIR}/src/main/resources/mybatis/mapper
+cp ./resources/infra/db-mybatis.xml ${INFRA_LAYER_DIR}/src/main/resources/mybatis/
+cp ./resources/infra/persistence-context.xml ${INFRA_LAYER_DIR}/src/main/resources/mybatis/
+mkdir -p ${INFRA_LAYER_DIR}/src/main/resources/props/
+cp ./resources/infra/database.properties ${INFRA_LAYER_DIR}/src/main/resources/props/
+mkdir ${INFRA_LAYER_DIR}/src/main/resources/spring/
+cp ./resources/module-context.xml ${INFRA_LAYER_DIR}/src/main/resources/spring/infra-context.xml
+cp ./resources/infra/root-infra.xml ${INFRA_LAYER_DIR}/src/main/resources/
+# other env
+mkdir -p ${INFRA_LAYER_DIR}/src/main/resources.alpha/props/
+cp ./resources/infra/database.properties ${INFRA_LAYER_DIR}/src/main/resources.alpha/props/
+mkdir -p ${INFRA_LAYER_DIR}/src/main/resources.beta/props/
+cp ./resources/infra/database.properties ${INFRA_LAYER_DIR}/src/main/resources.beta/props/
+mkdir -p ${INFRA_LAYER_DIR}/src/main/resources.dev/props/
+cp ./resources/infra/database.properties ${INFRA_LAYER_DIR}/src/main/resources.dev/props/
+mkdir -p ${INFRA_LAYER_DIR}/src/main/resources.prod/props/
+cp ./resources/infra/database.properties ${INFRA_LAYER_DIR}/src/main/resources.prod/props/
+
+# create application
+mkdir -p ${APPLICATION_LAYER_DIR}
+cp ./resources/application/application-pom.xml ${APPLICATION_LAYER_DIR}/pom.xml
+# java 
+mkdir -p ${APPLICATION_LAYER_DIR}/src/main/java${PACKAGE_BASE_DIR}/application/impl
+# resources
+mkdir -p ${APPLICATION_LAYER_DIR}/src/main/resources/spring/
+cp ./resources/module-context.xml ${APPLICATION_LAYER_DIR}/src/main/resources/spring/application-context.xml
+cp ./resources/application/root-application.xml ${APPLICATION_LAYER_DIR}/src/main/resources/
+
+# create facade
+mkdir -p ${FACADE_LAYER_DIR}
+cp ./resources/facade/facade-pom.xml ${FACADE_LAYER_DIR}/pom.xml
+# java 
+mkdir -p ${FACADE_LAYER_DIR}/src/main/java${PACKAGE_BASE_DIR}/facade/dto
+
+# create facade-impl
+mkdir -p ${FACADE_IMPL_LAYER_DIR}
+cp ./resources/facade/impl/facade-impl-pom.xml ${FACADE_IMPL_LAYER_DIR}/pom.xml
+cp ./resources/facade/impl/assembly.xml ${FACADE_IMPL_LAYER_DIR}/
+# java
+mkdir -p ${FACADE_IMPL_LAYER_DIR}/src/main/java${PACKAGE_BASE_DIR}/facade/impl/assembler
+mkdir -p ${FACADE_IMPL_LAYER_DIR}/src/main/java${PACKAGE_BASE_DIR}/facade/impl/interaction
+# resources
+mkdir -p ${FACADE_IMPL_LAYER_DIR}/src/main/META-INF/spring
+cp ./resources/facade/impl/root.xml ${FACADE_IMPL_LAYER_DIR}/src/main/META-INF/spring
+
