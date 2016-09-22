@@ -10,24 +10,24 @@
 
     </parent>
 
-    <groupId>${GROUP_ID}</groupId>
-    <artifactId>${ARTIFACT_ID}</artifactId>
+    <groupId>org.jason.service.auto</groupId>
+    <artifactId>auto</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>${PROJECT_NAME}-core</module>
-        <module>${PROJECT_NAME}-infra</module>
-        <module>${PROJECT_NAME}-application</module>
-        <module>${PROJECT_NAME}-facade</module>
-        <module>${PROJECT_NAME}-facade-impl</module>
-        <module>${PROJECT_NAME}-web</module>
+        <module>auto-core</module>
+        <module>auto-infra</module>
+        <module>auto-application</module>
+        <module>auto-facade</module>
+        <module>auto-facade-impl</module>
+        <module>auto-web</module>
     </modules>
 
     <developers>
         <developer>
             <organization>jihuiduo.com</organization>
-            <name>${AUTHOR_NAME}</name>
+            <name>jason</name>
         </developer>
     </developers>
 
