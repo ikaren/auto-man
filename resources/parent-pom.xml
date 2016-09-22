@@ -21,7 +21,6 @@
         <module>${PROJECT_NAME}-application</module>
         <module>${PROJECT_NAME}-facade</module>
         <module>${PROJECT_NAME}-facade-impl</module>
-        <module>${PROJECT_NAME}-web</module>
     </modules>
 
     <developers>

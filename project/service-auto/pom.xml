@@ -21,7 +21,6 @@
         <module>auto-application</module>
         <module>auto-facade</module>
         <module>auto-facade-impl</module>
-        <module>auto-web</module>
     </modules>
 
     <developers>
