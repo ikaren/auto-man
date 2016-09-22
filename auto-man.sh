@@ -123,7 +123,7 @@ cp ./resources/module-context.xml ${CORE_LAYER_DIR}/src/main/resources/spring/co
 sed -i .autobak 's/\${MODULE_BASE_PACKAGE}/'${PACKAGE_NAME}.core'/g' ${CORE_LAYER_DIR}/src/main/resources/spring/core-context.xml
 rm ${CORE_LAYER_DIR}/src/main/resources/spring/*.autobak
 cp ./resources/core/root-core.xml ${CORE_LAYER_DIR}/src/main/resources/
-
+echo "Core Module is OK..."
 # create infra
 mkdir -p ${INFRA_LAYER_DIR}
 cp ./resources/infra/infra-pom.xml ${INFRA_LAYER_DIR}/pom.xml
@@ -153,7 +153,7 @@ mkdir -p ${INFRA_LAYER_DIR}/src/main/resources.dev/props/
 cp ./resources/infra/database.properties ${INFRA_LAYER_DIR}/src/main/resources.dev/props/
 mkdir -p ${INFRA_LAYER_DIR}/src/main/resources.prod/props/
 cp ./resources/infra/database.properties ${INFRA_LAYER_DIR}/src/main/resources.prod/props/
-
+echo "Infrastructure Module is OK..."
 # create application
 mkdir -p ${APPLICATION_LAYER_DIR}
 cp ./resources/application/application-pom.xml ${APPLICATION_LAYER_DIR}/pom.xml
@@ -167,7 +167,7 @@ cp ./resources/module-context.xml ${APPLICATION_LAYER_DIR}/src/main/resources/sp
 sed -i .autobak 's/\${MODULE_BASE_PACKAGE}/'${PACKAGE_NAME}.infra'/g' ${APPLICATION_LAYER_DIR}/src/main/resources/spring/application-context.xml
 rm ${APPLICATION_LAYER_DIR}/src/main/resources/spring/*.autobak
 cp ./resources/application/root-application.xml ${APPLICATION_LAYER_DIR}/src/main/resources/
-
+echo "Application Module is OK..."
 # create facade
 mkdir -p ${FACADE_LAYER_DIR}
 cp ./resources/facade/facade-pom.xml ${FACADE_LAYER_DIR}/pom.xml
@@ -175,7 +175,7 @@ sed -i .autobak 's/\${GROUP_ID}/'$PACKAGE_NAME'/g;s/\${PROJECT_NAME}/'$PROJECT_N
 rm $FACADE_LAYER_DIR/*.autobak
 # java 
 mkdir -p ${FACADE_LAYER_DIR}/src/main/java${PACKAGE_BASE_DIR}/facade/dto
-
+echo "facade Module is OK..."
 # create facade-impl
 mkdir -p ${FACADE_IMPL_LAYER_DIR}
 cp ./resources/facade/impl/facade-impl-pom.xml ${FACADE_IMPL_LAYER_DIR}/pom.xml
@@ -211,3 +211,5 @@ mkdir -p ${FACADE_IMPL_LAYER_DIR}/src/main/resources.dev/props/
 cp ./resources/facade/impl/dubbo.properties ${FACADE_IMPL_LAYER_DIR}/src/main/resources.dev/props/
 mkdir -p ${FACADE_IMPL_LAYER_DIR}/src/main/resources.prod/props/
 cp ./resources/facade/impl/dubbo.properties ${FACADE_IMPL_LAYER_DIR}/src/main/resources.prod/props/
+echo "Facade Implementation Module is OK..."
+echo "Application build is completed!"
