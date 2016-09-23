@@ -42,7 +42,7 @@ done
 
 if [ ! -n "$PACKAGE_NAME" ]
     then
-    echo "-p arg package name not be null!"
+    echo "-p arg package name not be null! package name like \"com.xxx.xxx.service.app\""
     exit 1
 fi
 
