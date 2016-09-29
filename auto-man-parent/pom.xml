@@ -9,7 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>auto-man-core</module>
-        <module>auto-man-configer</module>
+        <module>auto-man-parser</module>
     </modules>
     <packaging>pom</packaging>
 
