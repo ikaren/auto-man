@@ -6,15 +6,24 @@ import java.util.Map;
  * Created by Jason.Xia on 16/9/28.
  */
 public class Interface extends Clazz {
-    protected Map<OperationType, Operation> operations;
-    private Domain bindingDomain;
+    private  Map<OperationType, Operation> operations;
+    private ValueObject bindingVO;
 
     public Interface() {
     }
 
-    public Interface(Map<OperationType, Operation> operations, Domain bindingDomain) {
-        this.operations = operations;
-        this.bindingDomain = bindingDomain;
+//    public Interface(Map<OperationType, Operation> operations, Domain bindingDomain) {
+//        this.operations = operations;
+//        this.bindingDomain = bindingDomain;
+//    }
+
+
+    public ValueObject getBindingVO() {
+        return bindingVO;
+    }
+
+    public void setBindingVO(ValueObject bindingVO) {
+        this.bindingVO = bindingVO;
     }
 
     public Map<OperationType, Operation> getOperations() {
@@ -25,11 +34,11 @@ public class Interface extends Clazz {
         this.operations = operations;
     }
 
-    public Domain getBindingDomain() {
-        return bindingDomain;
-    }
-
-    public void setBindingDomain(Domain bindingDomain) {
-        this.bindingDomain = bindingDomain;
-    }
+//    public Domain getBindingDomain() {
+//        return bindingDomain;
+//    }
+//
+//    public void setBindingDomain(Domain bindingDomain) {
+//        this.bindingDomain = bindingDomain;
+//    }
 }

@@ -1,14 +1,13 @@
-package ${projectBasePackage}.infra.sql;
+package ${projectBasePackage}.core.repository;
 
 import ${projectBasePackage}.core.vo.${vo.simpleName};
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
 */
-public interface ${vo.simpleName}Mapper {
+public interface I${vo.simpleName}Repository {
     <#-- create -->
     /**
      * create new ${vo.simpleName}
@@ -16,7 +15,7 @@ public interface ${vo.simpleName}Mapper {
      * @param ${vo.uncapFirstName}List
      * @return
      */
-    public int insert${vo.simpleName}Batch(@Param("list")List<${vo.simpleName}> ${vo.uncapFirstName}List);
+    public int insert${vo.simpleName}Batch(List<${vo.simpleName}> ${vo.uncapFirstName}List);
 
     <#-- Retrieve -->
     /**
@@ -25,7 +24,7 @@ public interface ${vo.simpleName}Mapper {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    public ${vo.simpleName} select${vo.simpleName}ById(@Param("id")long ${vo.uncapFirstName}Id);
+    public ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
 
     <#-- Update -->
     /**
@@ -38,10 +37,10 @@ public interface ${vo.simpleName}Mapper {
 
     <#-- Delete -->
     /**
-    * delete ${vo.simpleName} by id
-    *
-    * @param ${vo.uncapFirstName}Id
-    * @return
-    */
-    public int delete${vo.simpleName}ById(@Param("id")long ${vo.uncapFirstName}Id);
+     * delete ${vo.simpleName} by id
+     *
+     * @param ${vo.uncapFirstName}Id
+     * @return
+     */
+    public int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
 }

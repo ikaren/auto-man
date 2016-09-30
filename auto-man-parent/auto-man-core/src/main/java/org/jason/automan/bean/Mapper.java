@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public class Mapper extends Clazz {
     private Map<OperationType, Operation> operations;
-    private Domain bindingDomain;
+    private ValueObject bindingVO;
 
     public Mapper() {
     }
@@ -16,12 +16,21 @@ public class Mapper extends Clazz {
         this.operations = operations;
     }
 
-    public Domain getBindingDomain() {
-        return bindingDomain;
+//    public Domain getBindingDomain() {
+//        return bindingDomain;
+//    }
+//
+//    public void setBindingDomain(Domain bindingDomain) {
+//        this.bindingDomain = bindingDomain;
+//    }
+
+
+    public ValueObject getBindingVO() {
+        return bindingVO;
     }
 
-    public void setBindingDomain(Domain bindingDomain) {
-        this.bindingDomain = bindingDomain;
+    public void setBindingVO(ValueObject bindingVO) {
+        this.bindingVO = bindingVO;
     }
 
     public Map<OperationType, Operation> getOperations() {

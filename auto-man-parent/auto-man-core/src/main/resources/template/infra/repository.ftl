@@ -1,8 +1,8 @@
-package ${repository.packageName};
+package ${projectBasePackage}.infra;
 
-import ${repository.bindingInterface.bindingDomain.fullyQualifiedName};
-import ${repository.bindingInterface.fullyQualifiedName};
-import ${repository.mapper.fullyQualifiedName};
+import ${projectBasePackage}.core.repository.I${vo.simpleName}Repository;
+import ${projectBasePackage}.core.vo.${vo.simpleName};
+import ${projectBasePackage}.infra.sql.${vo.simpleName}Mapper;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,19 +12,56 @@ import java.util.List;
 * Created by Auto-Man v1.0.0 on ${.now}
 */
 @Named
-public class ${repository.simpleName} implements ${repository.bindingInterface.simpleName} {
+public class ${vo.simpleName}Repository implements I${vo.simpleName}Repository {
 
     @Inject
-    private ${repository.mapper.simpleName} ${repository.mapper.uncapFirstName};
+    private ${vo.simpleName}Mapper ${vo.uncapFirstName}Mapper;
 
-    <#assign interfaceOperations=repository.dindingInterface.operations>
-    <#assign mapperOperations=repository.mapper.operations>
-    <#if interfaceOperations?size == mapperOperations?size>
-        <#list interfaceOperations?keys as operation>
+    <#-- create -->
+    /**
+     * create new ${vo.simpleName}
+     *
+     * @param ${vo.uncapFirstName}List
+     * @return
+     */
     @Override
-    public ${interfaceOperations[operation].returnType} ${interfaceOperations[operation].name}(<#assign map=interfaceOperations[operation].args><#if map?exists><#list map?keys as arg>${arg} ${map[arg]}<#if arg_has_next>,</#if></#list></#if>){
-        return this.${repository.mapper.uncapFirstName}.${mapperOperations[operation].name}(<#assign map=interfaceOperations[operation].args><#if map?exists><#list map?keys as arg>${map[arg]}<#if arg_has_next>,</#if></#list></#if>);
+    public int insert${vo.simpleName}Batch(List<${vo.simpleName}> ${vo.uncapFirstName}List){
+        return this.${vo.uncapFirstName}Mapper.insert${vo.simpleName}Batch(${vo.uncapFirstName}List);
     }
-        </#list>
-    </#if>
+
+    <#-- Retrieve -->
+    /**
+     * select ${vo.simpleName} by id
+     *
+     * @param ${vo.uncapFirstName}Id
+     * @return
+     */
+    @Override
+    public ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
+        return this.${vo.uncapFirstName}Mapper.select${vo.simpleName}ById(${vo.uncapFirstName}Id);
+    }
+
+    <#-- Update -->
+    /**
+     * update ${vo.simpleName} by id
+     *
+     * @param ${vo.uncapFirstName}
+     * @return
+     */
+    @Override
+    public int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName}){
+        return this.${vo.uncapFirstName}Mapper.update${vo.simpleName}ById(${vo.uncapFirstName});
+    }
+
+    <#-- Delete -->
+    /**
+     * delete ${vo.simpleName} by id
+     *
+     * @param ${vo.uncapFirstName}Id
+     * @return
+     */
+    @Override
+    public int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
+        return this.${vo.uncapFirstName}Mapper.delete${vo.simpleName}ById(${vo.uncapFirstName}Id);
+    }
 }
