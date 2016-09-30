@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<automan xmlns="http://org.jason.automan/schema/automan"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://org.jason.automan/schema/automan http://org.jason.automan/schema/automan/automan.xsd">
+
+<table name="user" desc="user表的描述" className="User" isDomain="true" bindingDomain="xx.xx.User">
+    <columns>
+        <column name="id" jdbcType="BIGINT" property="id" length="10" notNull="true" unique="true" default-value="1" />
+        <column name="name" jdbcType="VARCHAR" property="name"  />
+        <column name="create_at" jdbcType="TIMESTAMP" property="createAt" />
+        <column name="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    </columns>
+</table>
+
+
+</automan>
