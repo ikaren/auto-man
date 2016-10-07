@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns="http://org.jason.automan/schema/automan"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://org.jason.automan/schema/automan">
+
+    <!-- complexType -->
+    <xsd:element name="automan">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="project" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="project">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="datasource" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="dubbo" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="log4j-elk" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="table" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:string" use="required"/>
+            <xsd:attribute name="project-name" type="xsd:string" use="required"/>
+            <xsd:attribute name="project-dir" type="xsd:string" use="required"/>
+            <xsd:attribute name="package-name" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="datasource">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="database-config" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="database-config">
+        <xsd:complexType>
+            <xsd:attribute name="env" type="environment" use="required"/>
+            <xsd:attribute name="db-name" type="xsd:string" use="required"/>
+            <xsd:attribute name="host" type="xsd:string" default="127.0.0.1" use="required"/>
+            <xsd:attribute name="port" type="xsd:int" default="3306"/>
+            <xsd:attribute name="username" type="xsd:string" default="root" use="required"/>
+            <xsd:attribute name="password" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="dubbo">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="dubbo-config" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:string" use="required"/>
+            <xsd:attribute name="service-name" type="xsd:string" use="required"/>
+            <!--<xsd:attribute name="env" type="environment" use="required"/>-->
+            <!--<xsd:attribute name="port" type="xsd:int" default="20880" use="required"/>-->
+            <!--<xsd:attribute name="zk-address" type="xsd:string" default="127.0.0.1:2181" use="required"/>-->
+            <!--<xsd:attribute name="group" type="xsd:string" use="required"/>-->
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="dubbo-config">
+        <xsd:complexType>
+            <xsd:attribute name="env" type="environment" use="required"/>
+            <xsd:attribute name="port" type="xsd:int" default="20880" use="required"/>
+            <xsd:attribute name="zk-address" type="xsd:string" default="127.0.0.1:2181" use="required"/>
+            <xsd:attribute name="group" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="log4j-elk">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="log4j-elk-cfg" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="log4j-elk-cfg">
+        <xsd:complexType>
+            <xsd:attribute name="env" type="environment" use="required"/>
+            <xsd:attribute name="port" type="xsd:int" default="8890" use="required"/>
+            <xsd:attribute name="host" type="xsd:string" default="127.0.0.1" use="required"/>
+            <xsd:attribute name="reconn-delay" type="xsd:long" default="50000" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="table">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="columns" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="desc" type="xsd:string" use="optional"/>
+            <xsd:attribute name="class-name" type="xsd:string" use="required"/>
+            <xsd:attribute name="is-domain" type="xsd:boolean" default="true" use="required"/>
+            <xsd:attribute name="binding-domain" type="xsd:string" use="optional"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="columns">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="column" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="column">
+        <xsd:complexType>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="jdbcType" type="jdbcType" use="required"/>
+            <xsd:attribute name="length" type="xsd:integer"/>
+            <xsd:attribute name="notNull" type="xsd:boolean"/>
+            <xsd:attribute name="unique" type="xsd:boolean"/>
+            <xsd:attribute name="default-value" type="xsd:string"/>
+            <xsd:attribute name="description" type="xsd:string"/>
+            <xsd:attribute name="property" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- simpleType -->
+
+    <!-- jdbcType from mybatis -->
+    <xsd:simpleType name="jdbcType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="BIT"/>
+            <xsd:enumeration value="FLOAT"/>
+            <xsd:enumeration value="CHAR"/>
+            <xsd:enumeration value="TIMESTAMP"/>
+            <xsd:enumeration value="OTHER"/>
+            <xsd:enumeration value="UNDEFINED"/>
+            <xsd:enumeration value="TINYINT"/>
+            <xsd:enumeration value="REAL"/>
+            <xsd:enumeration value="VARCHAR"/>
+            <xsd:enumeration value="BINARY"/>
+            <xsd:enumeration value="BLOG"/>
+            <xsd:enumeration value="NVARCHAR"/>
+            <xsd:enumeration value="SMALLINT"/>
+            <xsd:enumeration value="DOUBLE"/>
+            <xsd:enumeration value="LONGVARCHAR"/>
+            <xsd:enumeration value="VARBINARY"/>
+            <xsd:enumeration value="CLOB"/>
+            <xsd:enumeration value="NCHAR"/>
+            <xsd:enumeration value="INTEGER"/>
+            <xsd:enumeration value="NUMERIC"/>
+            <xsd:enumeration value="DATE"/>
+            <xsd:enumeration value="LONGVARBINARY"/>
+            <xsd:enumeration value="BOOLEAN"/>
+            <xsd:enumeration value="NCLOB"/>
+            <xsd:enumeration value="BIGINT"/>
+            <xsd:enumeration value="DECIMAL"/>
+            <xsd:enumeration value="TIME"/>
+            <xsd:enumeration value="NULL"/>
+            <xsd:enumeration value="CURSOR"/>
+            <xsd:enumeration value="ARRAY"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="environment">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PROD"/>
+            <xsd:enumeration value="BETA"/>
+            <xsd:enumeration value="ALPHA"/>
+            <xsd:enumeration value="DEV"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="property">
+        <xsd:complexType>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="value" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
