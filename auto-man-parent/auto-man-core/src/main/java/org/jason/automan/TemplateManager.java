@@ -31,7 +31,7 @@ public class TemplateManager {
             instance = new TemplateManager();
             instance.init();
         }
-        
+
         return instance;
     }
 
@@ -44,26 +44,29 @@ public class TemplateManager {
             }
         }
 
-        URL resource;
-        resource = Thread.currentThread().getContextClassLoader().getResource("./template");
-        if (null == resource) {
-            resource = Thread.currentThread().getContextClassLoader().getResource("/template");
+        if (null == templateFileDir) {
+            URL resource;
+            resource = Thread.currentThread().getContextClassLoader().getResource("./template");
             if (null == resource) {
-                String fileDir = System.getProperty(StringConstants.TEMPLATE_BASE_KEY);
-                if (null == fileDir || 0 == fileDir.length()) {
-                    throw new IllegalStateException("Cannot find template directory!");
-                }
+                resource = Thread.currentThread().getContextClassLoader().getResource("/template");
+                if (null == resource) {
+                    String fileDir = System.getProperty(StringConstants.TEMPLATE_BASE_KEY);
+                    if (null == fileDir || 0 == fileDir.length()) {
+                        throw new IllegalStateException("Cannot find template directory!");
+                    }
 
-                templateFileDir = fileDir;
-                return;
+                    templateFileDir = fileDir;
+                }
+            }
+
+            if (null != resource && !new File(resource.getFile()).isDirectory()) {
+                throw new IllegalStateException("template path:" + resource.getFile() + " not a directory!");
+            }
+
+            if (null != resource) {
+                templateFileDir = resource.getFile();
             }
         }
-
-        if (!new File(resource.getFile()).isDirectory()) {
-            throw new IllegalStateException("template path:" + resource.getFile() + " not a directory!");
-        }
-
-        templateFileDir = resource.getFile();
 
         try {
             configuration.setDirectoryForTemplateLoading(new File(templateFileDir));

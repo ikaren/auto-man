@@ -1,3 +1,4 @@
+<#-- @Deprecated -->
 package ${domain.packageName};
 
 <#list domain.interfaces as interface>

@@ -5,4 +5,7 @@ package org.jason.automan.constants;
  */
 public interface StringConstants {
     String TEMPLATE_BASE_KEY = "template.base";
+    String PROJECT_BASE_PACKAGE = "projectBasePackage";
+    String PROJECT_HOME = "projectHome";
+    String PROJECT_BASE = "projectBase";
 }

@@ -1,22 +1,22 @@
-package ${domain.packageName};
+package ${projectBasePackage}.exception;
 
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
 */
-public class ${domain.simpleName}Exception extends RuntimeException{
-    public ${domain.simpleName}Exception() {
+public class ${projectName.capFirst}Exception extends RuntimeException{
+    public ${projectName}Exception() {
         super();
     }
 
-    public ${domain.simpleName}Exception(String message) {
+    public ${projectName.capFirst}Exception(String message) {
         super(message);
     }
 
-    public ${domain.simpleName}Exception(String message, Throwable cause) {
+    public ${projectName.capFirst}Exception(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ${domain.simpleName}Exception(Throwable cause) {
+    public ${projectName.capFirst}Exception(Throwable cause) {
         super(cause);
     }
 }
