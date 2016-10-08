@@ -3,7 +3,6 @@
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             targetNamespace="http://org.jason.automan/schema/automan">
 
-    <!-- complexType -->
     <xsd:element name="automan">
         <xsd:complexType>
             <xsd:sequence>
@@ -15,9 +14,9 @@
     <xsd:element name="project">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element ref="datasource" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element ref="dubbo" minOccurs="0" maxOccurs="unbounded"/>
-                <xsd:element ref="log4j-elk" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="datasource" minOccurs="0" maxOccurs="1"/>
+                <xsd:element ref="dubbo" minOccurs="0" maxOccurs="1"/>
+                <xsd:element ref="log4j-elk" minOccurs="0" maxOccurs="1"/>
                 <xsd:element ref="table" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:string" use="required"/>
@@ -54,10 +53,6 @@
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:string" use="required"/>
             <xsd:attribute name="service-name" type="xsd:string" use="required"/>
-            <!--<xsd:attribute name="env" type="environment" use="required"/>-->
-            <!--<xsd:attribute name="port" type="xsd:int" default="20880" use="required"/>-->
-            <!--<xsd:attribute name="zk-address" type="xsd:string" default="127.0.0.1:2181" use="required"/>-->
-            <!--<xsd:attribute name="group" type="xsd:string" use="required"/>-->
         </xsd:complexType>
     </xsd:element>
 

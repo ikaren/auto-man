@@ -1,6 +1,7 @@
 package org.jason.automan.parser;
 
-import java.io.InputStream;
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -8,5 +9,5 @@ import java.util.Map;
  */
 public interface Transporter {
 
-    Map<String, Object> transport(InputStream inputStream);
+    JSONObject transport(String in);
 }

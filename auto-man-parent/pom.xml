@@ -19,6 +19,8 @@
         <spring.version>4.2.4.RELEASE</spring.version>
         <sl4j.version>1.7.12</sl4j.version>
         <javax.inject.version>1</javax.inject.version>
+        <jsoup.version>1.9.2</jsoup.version>
+        <fastjason.version>1.2.7</fastjason.version>
     </properties>
 
     <dependencyManagement>
@@ -47,6 +49,16 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${sl4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjason.version}</version>
             </dependency>
         </dependencies>
 
