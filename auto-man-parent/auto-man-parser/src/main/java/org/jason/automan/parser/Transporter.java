@@ -1,13 +1,13 @@
 package org.jason.automan.parser;
 
-import com.alibaba.fastjson.JSONObject;
+import org.jason.automan.parser.bean.Project;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by Jason.Xia on 16/10/7.
  */
 public interface Transporter {
 
-    JSONObject transport(String in);
+    List<Project> transport(String in);
 }

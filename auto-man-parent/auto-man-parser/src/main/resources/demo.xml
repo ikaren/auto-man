@@ -6,10 +6,13 @@
     <project id="testProject" project-name="tags" project-dir="/Users/yuqingxia/ci-test"
              package-name="com.hans.jhd.domain.tags">
         <datasource id="datasourceConfig">
-            <database-config env="PROD" db-name="prod_tags" host="127.0.0.1" username="root" password="123"/>
-            <database-config env="BETA" db-name="beta_tags" host="127.0.0.1" username="root" password="123"/>
-            <database-config env="ALPHA" db-name="alpha_tags" host="127.0.0.1" username="root" password="123"/>
-            <database-config env="DEV" db-name="dev_tags" host="127.0.0.1" username="root" password="123"/>
+            <database-config env="PROD" db-name="prod_tags" host="127.0.0.1" port="3306" username="root"
+                             password="123"/>
+            <database-config env="BETA" db-name="beta_tags" host="127.0.0.1" port="3306" username="root"
+                             password="123"/>
+            <database-config env="ALPHA" db-name="alpha_tags" host="127.0.0.1" port="3306" username="root"
+                             password="123"/>
+            <database-config env="DEV" db-name="dev_tags" host="127.0.0.1" port="3306" username="root" password="123"/>
         </datasource>
 
         <dubbo id="prodDubboConfig" service-name="domain-tags">
@@ -26,7 +29,8 @@
             <log4j-elk-cfg env="DEV" port="8890" host="127.0.0.1" reconn-delay="50000"/>
         </log4j-elk>
 
-        <table id="reservationTable" name="reservation" desc="预约表" class-name="Reservation" is-domain="true" binding-domain="Reservation">
+        <table id="reservationTable" name="reservation" desc="预约表" class-name="Reservation" is-domain="true"
+               binding-domain="Reservation">
             <columns>
                 <column name="id" jdbcType="BIGINT" property="id" length="10" notNull="true" unique="true"
                         default-value="1"/>
@@ -36,7 +40,8 @@
             </columns>
         </table>
 
-        <table id="traceTable" name="reservation_trace" desc="预约跟踪表" class-name="ReservationTrace" is-domain="true" binding-domain="ReservationTrace">
+        <table id="traceTable" name="reservation_trace" desc="预约跟踪表" class-name="ReservationTrace" is-domain="true"
+               binding-domain="ReservationTrace">
             <columns>
                 <column name="id" jdbcType="BIGINT" property="id" length="10" notNull="true" unique="true"
                         default-value="1"/>
