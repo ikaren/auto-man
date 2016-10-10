@@ -33,7 +33,6 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     private I${domain.simpleName}Application ${domain.uncapFirstName}Application;
 
     /**
-    * Created by Auto-Man v1.0.0
     * create new ${domain.simpleName}
     *
     * @param ${domain.uncapFirstName}List
@@ -65,7 +64,6 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     }
 
     /**
-    * Created by Auto-Man v1.0.0
     * update ${domain.simpleName} by id
     *
     * @param ${domain.uncapFirstName}
@@ -97,7 +95,6 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     }
 
     /**
-    * Created by Auto-Man v1.0.0
     * delete ${domain.simpleName} by id
     *
     * @param ${domain.uncapFirstName}Id
@@ -130,7 +127,6 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
 <#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
     /**
-    * Created by Auto-Man v1.0.0
     * create new ${vo.simpleName}
     *
     * @param ${vo.uncapFirstName}List
@@ -162,7 +158,6 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     }
 
     /**
-    * Created by Auto-Man v1.0.0
     * update ${vo.simpleName} by id
     *
     * @param ${vo.uncapFirstName}
@@ -194,7 +189,6 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     }
 
     /**
-    * Created by Auto-Man v1.0.0
     * delete ${vo.simpleName} by id
     *
     * @param ${vo.uncapFirstName}Id

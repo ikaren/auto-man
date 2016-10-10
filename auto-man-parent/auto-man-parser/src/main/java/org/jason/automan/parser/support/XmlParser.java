@@ -100,7 +100,7 @@ public class XmlParser extends AbstractParser {
     }
 
     private void generateResourcesFile(){
-        
+
     }
 
     private <T> Map<String, Object> buildRootMap(TemplateGenerateConfiguration templateKey, T value) {

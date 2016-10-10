@@ -28,7 +28,6 @@ import java.util.List;
         description = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>写入服务")
 public interface I${domain.simpleName}CommandFacade {
     /**
-      * Created by Auto-Man v1.0.0
       * create new ${domain.simpleName}
       *
       * @param ${domain.uncapFirstName}List
@@ -42,7 +41,6 @@ public interface I${domain.simpleName}CommandFacade {
     Response<Integer> insert${domain.simpleName}Batch(@ThemisArgConfig(argName = "${domain.uncapFirstName}List", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>") List<${domain.simpleName}> ${domain.uncapFirstName}List,String traceId);
 
     /**
-     * Created by Auto-Man v1.0.0
      * update ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}
@@ -56,7 +54,6 @@ public interface I${domain.simpleName}CommandFacade {
     Response<Integer> update${domain.simpleName}ById(@ThemisArgConfig(argName = "${domain.uncapFirstName}", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>") ${domain.simpleName} ${domain.uncapFirstName},String traceId);
 
     /**
-      * Created by Auto-Man v1.0.0
       * delete ${domain.simpleName} by id
       *
       * @param ${domain.uncapFirstName}Id
@@ -72,7 +69,6 @@ public interface I${domain.simpleName}CommandFacade {
 <#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
     /**
-     * Created by Auto-Man v1.0.0
      * create new ${vo.simpleName}
      *
      * @param ${vo.uncapFirstName}List
@@ -86,7 +82,6 @@ public interface I${domain.simpleName}CommandFacade {
     Response<Integer> insert${vo.simpleName}Batch(@ThemisArgConfig(argName = "${vo.uncapFirstName}List", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>") List<${vo.simpleName}> ${vo.uncapFirstName}List,String traceId);
 
     /**
-     * Created by Auto-Man v1.0.0
      * update ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}
@@ -100,7 +95,6 @@ public interface I${domain.simpleName}CommandFacade {
     Response<Integer> update${vo.simpleName}ById(@ThemisArgConfig(argName = "${vo.uncapFirstName}", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>") ${vo.simpleName} ${vo.uncapFirstName},String traceId);
 
     /**
-     * Created by Auto-Man v1.0.0
      * delete ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}Id

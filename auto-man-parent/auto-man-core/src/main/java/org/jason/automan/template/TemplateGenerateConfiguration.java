@@ -23,7 +23,42 @@ public enum TemplateGenerateConfiguration {
     FACADE_QUERY_IMPL("facade/facade-query-impl.ftl", "-facade-impl", "/facade/impl", FileType.JAVA, FileCategory.CODE),
     FACADE_COMMAND_IMPL("facade/facade-command-impl.ftl", "-facade-impl", "/facade/impl", FileType.JAVA, FileCategory
             .CODE),
-    ASSEMBLER("facade/assembler.ftl", "-facade-impl", "/facade/impl/assembler", FileType.JAVA, FileCategory.CODE);
+    ASSEMBLER("facade/assembler.ftl", "-facade-impl", "/facade/impl/assembler", FileType.JAVA, FileCategory.CODE),
+
+    // resources
+    PARENT_POM("parent-pom.ftl","","",FileType.XML,FileCategory.POM),
+    // core
+    CORE_POM("core/core-pom.ftl","-core","",FileType.XML,FileCategory.POM),
+    ROOT_CORE("core/root-core.ftl","-core","",FileType.XML,FileCategory.RESOURCES),
+    CORE_CONTEXT("module-context.ftl","-core","/spring",FileType.XML,FileCategory.RESOURCES),
+    // infra
+    INFRA_POM("infra/infra-pom.ftl","-infra","",FileType.XML,FileCategory.POM),
+    ROOT_INFRA("infra/root-infra.ftl","-infra","",FileType.XML,FileCategory.RESOURCES),
+    INFRA_CONTEXT("module-context.ftl","-infra","/spring",FileType.XML,FileCategory.RESOURCES),
+    MYBATIS_MAPPER("","-infra","/mybatis/mapper",FileType.XML,FileCategory.RESOURCES),
+    MYBATIS_DB("infra/db-mybatis.ftl","-infra","/mybatis",FileType.XML,FileCategory.RESOURCES),
+//    MYBATIS_PERSISTENCE(""),
+    PROD_DATABASE_PROPERTIES("infra/databse.ftl","-infra","/props",FileType.XML,FileCategory.RESOURCES),
+    BETA_DATABASE_PROPERTIES(""),
+    ALPHA_DATABASE_PROPERTIES(""),
+    DEV_DATABASE_PROPERTIES(""),
+    // application
+    APPLICATION_POM(""),
+    ROOT_APPLICATION(""),
+    APPLICATION_CONTEXT(""),
+    // facade
+    FACADE_POM(""),
+    // facade impl
+    FACADE_IMPL_POM(""),
+    ROOT_FACADE_IMPL(""),
+    FACADE_IMPL_CONTEXT(""),
+    DUBBO(""),
+    DUBBO_PROVIDER(""),
+    MATA_INF_ROOT(""),
+    PROD_DUBBO_PROPERTIES(""),
+    BETA_DUBBO_PROPERTIES(""),
+    ALPHA_DUBBO_PROPERTIES(""),
+    DEV_DUBBO_PROPERTIES(""),
 
     public String templateName;
     public String modulePath;

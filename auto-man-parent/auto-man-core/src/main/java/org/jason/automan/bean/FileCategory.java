@@ -5,8 +5,8 @@ package org.jason.automan.bean;
  */
 public enum FileCategory {
     CODE("java", 1),
-    RESOURCES("resources", 2);
-
+    RESOURCES("resources", 2),
+    POM("pom",3);
 
     public String value;
     public int code;

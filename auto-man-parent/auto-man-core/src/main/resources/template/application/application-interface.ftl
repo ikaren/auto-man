@@ -14,7 +14,6 @@ import java.util.List;
 public interface I${domain.simpleName}Application {
     <#-- create -->
     /**
-     * Created by Auto-Man v1.0.0
      * create new ${domain.simpleName}
      *
      * @param ${domain.uncapFirstName}List
@@ -24,7 +23,6 @@ public interface I${domain.simpleName}Application {
 
     <#-- Retrieve -->
     /**
-     * Created by Auto-Man v1.0.0
      * select ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}Id
@@ -34,7 +32,6 @@ public interface I${domain.simpleName}Application {
 
     <#-- Update -->
     /**
-     * Created by Auto-Man v1.0.0
      * update ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}
@@ -44,7 +41,6 @@ public interface I${domain.simpleName}Application {
 
     <#-- Delete -->
     /**
-     * Created by Auto-Man v1.0.0
      * delete ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}Id
@@ -56,7 +52,6 @@ public interface I${domain.simpleName}Application {
     <#list domain.bindingVOs as vo>
     <#-- create -->
     /**
-     * Created by Auto-Man v1.0.0
      * create new ${vo.simpleName}
      *
      * @param ${vo.uncapFirstName}List
@@ -66,7 +61,6 @@ public interface I${domain.simpleName}Application {
 
     <#-- Retrieve -->
     /**
-     * Created by Auto-Man v1.0.0
      * select ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}Id
@@ -76,7 +70,6 @@ public interface I${domain.simpleName}Application {
 
     <#-- Update -->
     /**
-     * Created by Auto-Man v1.0.0
      * update ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}
@@ -86,7 +79,6 @@ public interface I${domain.simpleName}Application {
 
     <#-- Delete -->
     /**
-     * Created by Auto-Man v1.0.0
      * delete ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}Id

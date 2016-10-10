@@ -22,9 +22,6 @@ public class ${vo.simpleName}DTO extends CommonEntity{
 </#if>
 <#if vo.properties?exists>
 <#list vo.properties as property>
-    //
-    // getter Created by Auto-Man v1.0.0
-    //
     public ${property.javaType} get${property.propertyName?cap_first}() {
         return this.${property.propertyName};
     }

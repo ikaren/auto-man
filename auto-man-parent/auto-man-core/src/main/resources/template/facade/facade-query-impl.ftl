@@ -33,7 +33,6 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
     private I${domain.simpleName}Application ${domain.uncapFirstName}Application;
 
     /**
-     * Created by Auto-Man v1.0.0
      * select ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}Id
@@ -67,7 +66,6 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
 <#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
     /**
-     * Created by Auto-Man v1.0.0
      * select ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}Id

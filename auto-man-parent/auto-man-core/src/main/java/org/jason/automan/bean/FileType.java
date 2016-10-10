@@ -4,7 +4,10 @@ package org.jason.automan.bean;
  * Created by Jason.Xia on 16/10/7.
  */
 public enum FileType {
-    JAVA(".java", 1);
+    JAVA(".java", 1),
+    XML(".xml", 2),
+    PROPERTIES(".properties", 3),
+    SQL(".sql", 4);
 
     public String value;
     public int code;

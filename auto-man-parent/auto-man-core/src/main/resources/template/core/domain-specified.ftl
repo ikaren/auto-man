@@ -37,7 +37,6 @@ public class ${domain.simpleName} extends Entity{
 
     <#-- create -->
     /**
-     * Created by Auto-Man v1.0.0
      * create new ${domain.simpleName}
      *
      * @param ${domain.uncapFirstName}List
@@ -49,7 +48,6 @@ public class ${domain.simpleName} extends Entity{
 
     <#-- Retrieve -->
     /**
-     * Created by Auto-Man v1.0.0
      * select ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}Id
@@ -61,7 +59,6 @@ public class ${domain.simpleName} extends Entity{
 
     <#-- Update -->
     /**
-     * Created by Auto-Man v1.0.0
      * update ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}
@@ -73,7 +70,6 @@ public class ${domain.simpleName} extends Entity{
 
     <#-- Delete -->
     /**
-     * Created by Auto-Man v1.0.0
      * delete ${domain.simpleName} by id
      *
      * @param ${domain.uncapFirstName}Id
@@ -87,7 +83,6 @@ public class ${domain.simpleName} extends Entity{
 <#list domain.bindingVOs as vo>
     <#-- create -->
     /**
-     * Created by Auto-Man v1.0.0
      * create new ${vo.simpleName}
      *
      * @param ${vo.uncapFirstName}List
@@ -99,7 +94,6 @@ public class ${domain.simpleName} extends Entity{
 
     <#-- Retrieve -->
     /**
-     * Created by Auto-Man v1.0.0
      * select ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}Id
@@ -111,7 +105,6 @@ public class ${domain.simpleName} extends Entity{
 
     <#-- Update -->
     /**
-     * Created by Auto-Man v1.0.0
      * update ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}
@@ -123,7 +116,6 @@ public class ${domain.simpleName} extends Entity{
 
     <#-- Delete -->
     /**
-     * Created by Auto-Man v1.0.0
      * delete ${vo.simpleName} by id
      *
      * @param ${vo.uncapFirstName}Id
@@ -136,11 +128,9 @@ public class ${domain.simpleName} extends Entity{
 </#if>
 <#if domain.properties?exists>
 <#list domain.properties as property>
-    // getter Created by Auto-Man v1.0.0
     public ${property.javaType} get${property.propertyName?cap_first}() {
         return this.${property.propertyName};
     }
-    // setter Created by Auto-Man v1.0.0
     public void set${property.propertyName?cap_first}(${property.javaType} ${property.propertyName}) {
         this.${property.propertyName} = ${property.propertyName};
     }
