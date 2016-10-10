@@ -1,5 +1,6 @@
 package org.jason.automan;
 
+import org.jason.automan.bean.ProjectName;
 import org.jason.automan.constants.StringConstants;
 import org.jason.automan.template.TemplateConfig;
 import org.jason.automan.template.TemplateGenerateConfiguration;
@@ -38,13 +39,20 @@ public class Processer {
         root.put(StringConstants.PROJECT_HOME, context.getProjectHome());
         root.put(StringConstants.PROJECT_BASE, context.getProjectBase());
 
+        root.put("projectName", new ProjectName(context.getProjectName().substring(0, 1).toUpperCase() + context
+                .getProjectName().substring(1), context.getProjectName().substring(0, 1).toLowerCase() + context
+                .getProjectName().substring(1)));
+        root.put("projectLayer", context.getProjectLayer());
         StringBuilder dirSb = new StringBuilder();
         dirSb.append(context.getProjectHome())
+                .append(context.getProjectLayer())
+                .append("-")
+                .append(context.getProjectName())
+                .append("/")
                 .append(context.getProjectName())
                 .append(templateKey.modulePath)
                 .append("/src/main/")
                 .append(templateKey.fileCategory.value)
-                .append("/")
                 .append(context.getProjectBase())
                 .append(templateKey.targetFilePath);
         File dir = new File(dirSb.toString());
@@ -57,6 +65,7 @@ public class Processer {
             writer = new FileWriter(new File(dirSb.toString(), fileName + templateKey.fileType.value));
             templateManager.getTemplate(templateKey.templateName).process(root, writer);
             writer.flush();
+            System.out.println("Generate file: " + fileName + " OK!");
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         } finally {

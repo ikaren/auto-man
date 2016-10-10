@@ -51,9 +51,9 @@ public class XmlTransporter implements Transporter {
         result.setPackageName(project.attr("package-name"));
         String template = project.attr("template-root");
         if (template.startsWith("classpath:")) {
-            result.setTemplateRoot(template.substring(10));
+            result.setTemplateRoot("." + template.substring(10));
         } else {
-            result.setTemplateRoot("/template");
+            result.setTemplateRoot("./template");
         }
 
         Elements datasource = project.getElementsByTag("datasource");
@@ -71,7 +71,7 @@ public class XmlTransporter implements Transporter {
             result.setLog4jConfig(getLog4jConfig(log4jConfig.get(0)));
         }
 
-        Elements tables = project.getElementsByTag("table");
+        Elements tables = project.getElementsByTag("data-table");
         if (null != tables && 0 < tables.size()) {
             for (Element item : tables) {
                 Table table = getTable(item);
@@ -151,21 +151,17 @@ public class XmlTransporter implements Transporter {
         result.setClassName(table.attr("class-name"));
         result.setDomain(Boolean.parseBoolean(table.attr("is-domain")));
         result.setBindingDomain(table.attr("binding-domain"));
-        Elements columns = table.getElementsByTag("columns");
-        if (null != columns && 1 == columns.size()) {
-            Elements columnList = columns.get(0).getElementsByTag("column");
-            if (null != columnList && 0 < columnList.size()) {
-                for (Element item : columnList) {
-                    Column column = new Column();
-                    column.setName(item.attr("name"));
-                    column.setJdbcType(item.attr("jdbcType"));
-                    column.setProperty(item.attr("property"));
-                    column.setLength(Integer.parseInt(item.attr("length")));
-                    column.setNotNull(Boolean.parseBoolean(item.attr("notNull")));
-                    column.setUnique(Boolean.parseBoolean(item.attr("unique")));
-
-                    result.getColumns().add(column);
-                }
+        Elements columns = table.getElementsByTag("column");
+        if (null != columns && 1 <= columns.size()) {
+            for (Element item : columns) {
+                Column column = new Column();
+                column.setName(item.attr("name"));
+                column.setJdbcType(item.attr("jdbcType"));
+                column.setProperty(item.attr("property"));
+                column.setNotNull(null == item.attr("notNull") || Boolean.parseBoolean(item.attr("notNull")));
+                column.setUnique(null != item.attr("unique") && Boolean.parseBoolean(item.attr("unique")));
+                column.setDesc(null != item.attr("desc") ? item.attr("desc") : item.attr("name"));
+                result.getColumns().add(column);
             }
         }
 

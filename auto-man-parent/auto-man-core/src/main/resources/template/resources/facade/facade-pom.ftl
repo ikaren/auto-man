@@ -3,19 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>auto-man-parent</artifactId>
-        <groupId>org.jason.automan</groupId>
+        <artifactId>${PARENT_ARTIFACT}</artifactId>
+        <groupId>${GROUP_ID}</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>auto-man-startup</artifactId>
-
+    <packaging>jar</packaging>
+    <artifactId>${PROJECT_NAME}-facade</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.jason.automan</groupId>
-            <artifactId>auto-man-parser</artifactId>
+            <groupId>com.hans.jhd.infra.themis</groupId>
+            <artifactId>themis-service</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.albert.common</groupId>
+            <artifactId>domain</artifactId>
+        </dependency>
     </dependencies>
+
 </project>

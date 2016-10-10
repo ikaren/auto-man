@@ -17,7 +17,7 @@ import java.util.List;
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
 */
-@ThemisServiceConfig(DSI = "${doamin.uncapFirstName}CommandFacade",
+@ThemisServiceConfig(DSI = "${domain.uncapFirstName}CommandFacade",
         version = "1.0.0",
         cluster = ClusterType.FAIL_FAST,
         timeout = 60000,

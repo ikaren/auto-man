@@ -29,6 +29,8 @@ public class ProcesserContext {
      */
     private String templateRepository;
 
+    private transient String projectLayer;
+
     private Map<String, String> extra = new HashMap<>();
 
     public ProcesserContext(String projectName, String projectHome, String basePackage, String projectBase, String
@@ -39,6 +41,13 @@ public class ProcesserContext {
         this.basePackage = basePackage;
         if (null == projectBase) {
             this.projectBase = "/" + basePackage.replace(".", "/");
+        }
+
+        String[] split = basePackage.split(".");
+        if (split.length >= 2) {
+            this.projectLayer = split[split.length - 2];
+        } else {
+            this.projectLayer = this.projectName;
         }
 
         this.templateRepository = templateRepository;
@@ -98,5 +107,13 @@ public class ProcesserContext {
 
     public void setTemplateRepository(String templateRepository) {
         this.templateRepository = templateRepository;
+    }
+
+    public String getProjectLayer() {
+        return projectLayer;
+    }
+
+    public void setProjectLayer(String projectLayer) {
+        this.projectLayer = projectLayer;
     }
 }

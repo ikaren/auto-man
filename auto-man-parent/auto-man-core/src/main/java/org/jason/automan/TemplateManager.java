@@ -61,6 +61,12 @@ public class TemplateManager {
         }
 
         try {
+            URL resource = Thread.currentThread().getContextClassLoader().getResource(templateFileDir);
+            if (null == resource) {
+                throw new IllegalArgumentException("Not found template path: " + templateFileDir);
+            }
+
+            templateFileDir = resource.getFile();
             configuration.setDirectoryForTemplateLoading(new File(templateFileDir));
         } catch (IOException e) {
             throw new IllegalStateException("Cannot resolved the template path:" + templateFileDir, e);

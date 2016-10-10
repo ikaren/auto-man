@@ -1,9 +1,11 @@
 package ${projectBasePackage}.core.domain;
 
+<#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
 import ${projectBasePackage}.core.vo.${vo.simpleName};
 import ${projectBasePackage}.core.repository.I${vo.simpleName}Repository;
 </#list>
+</#if>
 import org.albert.common.domain.Entity;
 
 import javax.inject.Inject;
@@ -14,19 +16,20 @@ import javax.inject.Named;
 */
 @Named
 public class ${domain.simpleName} extends Entity{
-
+<#if domain.properties?exists>
 <#list domain.properties as property>
     /**
     *  <#if property.desc?has_content>${property.desc}</#if>
     */
     private ${property.javaType} ${property.propertyName};
 </#list>
-
+</#if>
+<#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
     @Inject
     private I${vo.simpleName}Repository ${vo.uncapFirstName}Repository;
 </#list>
-
+</#if>
 <#if domain.hasConstructors>
     public ${domain.simpleName}() {
     }
@@ -131,7 +134,7 @@ public class ${domain.simpleName} extends Entity{
     }
 </#list>
 </#if>
-
+<#if domain.properties?exists>
 <#list domain.properties as property>
     // getter Created by Auto-Man v1.0.0
     public ${property.javaType} get${property.propertyName?cap_first}() {
@@ -142,4 +145,5 @@ public class ${domain.simpleName} extends Entity{
         this.${property.propertyName} = ${property.propertyName};
     }
 </#list>
+</#if>
 }

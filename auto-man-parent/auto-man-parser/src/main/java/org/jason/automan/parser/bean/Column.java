@@ -10,6 +10,7 @@ public class Column {
     private int length;
     private boolean notNull;
     private boolean unique;
+    private String desc;
 
     @Override
     public boolean equals(Object o) {
@@ -72,5 +73,13 @@ public class Column {
 
     public void setUnique(boolean unique) {
         this.unique = unique;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

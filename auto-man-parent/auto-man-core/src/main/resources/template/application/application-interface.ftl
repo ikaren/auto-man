@@ -1,8 +1,9 @@
 package ${projectBasePackage}.application;
-
+<#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
 import ${projectBasePackage}.core.vo.${vo.simpleName};
 </#list>
+</#if>
 import ${projectBasePackage}.core.domain.${domain.simpleName};
 
 import java.util.List;

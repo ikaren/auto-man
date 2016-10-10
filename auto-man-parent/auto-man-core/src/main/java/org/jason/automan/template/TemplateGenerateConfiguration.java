@@ -13,7 +13,7 @@ public enum TemplateGenerateConfiguration {
     REPOSITORY("core/repository.ftl", "-core", "/core/repository", FileType.JAVA, FileCategory.CODE),
     MAPPER("infra/mapper.ftl", "-infra", "/infra/sql", FileType.JAVA, FileCategory.CODE),
     REPOSITORY_IMPL("infra/repository.ftl", "-infra", "/infra", FileType.JAVA, FileCategory.CODE),
-    APPLICATION("application/application-interface.ftl.ftl", "-application", "/application", FileType.JAVA,
+    APPLICATION("application/application-interface.ftl", "-application", "/application", FileType.JAVA,
             FileCategory.CODE),
     APPLICATION_IMPL("application/application.ftl", "-application", "/application/impl", FileType.JAVA, FileCategory
             .CODE),
@@ -23,7 +23,7 @@ public enum TemplateGenerateConfiguration {
     FACADE_QUERY_IMPL("facade/facade-query-impl.ftl", "-facade-impl", "/facade/impl", FileType.JAVA, FileCategory.CODE),
     FACADE_COMMAND_IMPL("facade/facade-command-impl.ftl", "-facade-impl", "/facade/impl", FileType.JAVA, FileCategory
             .CODE),
-    ASSEMBLER("facade/assembler", "-facade-impl", "/facade/impl/assembler", FileType.JAVA, FileCategory.CODE);
+    ASSEMBLER("facade/assembler.ftl", "-facade-impl", "/facade/impl/assembler", FileType.JAVA, FileCategory.CODE);
 
     public String templateName;
     public String modulePath;

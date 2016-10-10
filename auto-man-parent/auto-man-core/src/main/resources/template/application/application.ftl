@@ -3,10 +3,11 @@ package ${projectBasePackage}.application.impl;
 import ${projectBasePackage}.application.I${domain.simpleName}Application;
 import ${projectBasePackage}.core.domain.${domain.simpleName};
 import ${projectBasePackage}.core.exception.${projectName.capFirst}Exception;
+<#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
 import ${projectBasePackage}.core.vo.${vo.simpleName};
 </#list>
-
+</#if>
 import org.albert.common.util.SequenceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +23,8 @@ import java.util.List;
 */
 @Transactional(value = "transactionManager")
 @Named
-public class ${repository.simpleName}Application implements I${domain.simpleName}Application {
-    private Logger logger = LoggerFactory.getLogger(${repository.simpleName}Application.class);
+public class ${domain.simpleName}Application implements I${domain.simpleName}Application {
+    private Logger logger = LoggerFactory.getLogger(${domain.simpleName}Application.class);
 
     @Inject
     private ${domain.simpleName} ${domain.uncapFirstName};

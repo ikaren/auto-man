@@ -29,24 +29,24 @@
             <log4j-elk-cfg env="DEV" port="8890" host="127.0.0.1" reconn-delay="50000"/>
         </log4j-elk>
 
-        <table id="reservationTable" name="reservation" desc="预约表" class-name="Reservation" is-domain="true"
+        <data-table id="reservationTable" name="reservation" desc="预约表" class-name="Reservation" is-domain="true"
                binding-domain="Reservation">
-                <column name="tel_num" jdbcType="VARCHAR" property="telNum"/>
-                <column name="account_id" jdbcType="BIGINT" property="accountId"/>
-                <column name="reservation_status" jdbcType="INTEGER" property="reservationStatus"/>
-        </table>
+            <column name="tel_num" jdbcType="VARCHAR" property="telNum"/>
+            <column name="account_id" jdbcType="BIGINT" property="accountId"/>
+            <column name="reservation_status" jdbcType="INTEGER" property="reservationStatus"/>
+        </data-table>
 
-        <table id="traceTable" name="reservation_trace" desc="预约跟踪表" class-name="ReservationTrace" is-domain="true"
+        <data-table id="traceTable" name="reservation_trace" desc="预约跟踪表" class-name="ReservationTrace" is-domain="true"
                binding-domain="ReservationTrace">
-                <column name="reservation_id" jdbcType="BIGINT" property="reservationId"/>
-                <column name="process" jdbcType="VARCHAR" property="process"/>
-        </table>
+            <column name="reservation_id" jdbcType="BIGINT" property="reservationId"/>
+            <column name="process" jdbcType="VARCHAR" property="process"/>
+        </data-table>
 
-        <table id="reportTable" name="report" desc="报告表" class-name="Report" is-domain="true" binding-domain="Report">
-                <column name="reservation_id" jdbcType="BIGINT" property="reservationId"/>
-                <column name="url" jdbcType="VARCHAR" property="url"/>
-                <column name="time" jdbcType="TIMESTAMP" property="time"/>
-        </table>
+        <data-table id="reportTable" name="report" desc="报告表" class-name="Report" is-domain="true" binding-domain="Report">
+            <column name="reservation_id" jdbcType="BIGINT" property="reservationId"/>
+            <column name="url" jdbcType="VARCHAR" property="url"/>
+            <column name="time" jdbcType="TIMESTAMP" property="time"/>
+        </data-table>
     </project>
 
 
