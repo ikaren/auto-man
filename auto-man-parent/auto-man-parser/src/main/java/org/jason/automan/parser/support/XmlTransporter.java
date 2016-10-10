@@ -41,8 +41,20 @@ public class XmlTransporter implements Transporter {
         Project result = new Project();
         result.setId(project.attr("id"));
         result.setProjectName(project.attr("project-name"));
-        result.setProjectDir(project.attr("project-dir"));
+        String projectHome = project.attr("project-dir");
+        if (projectHome.endsWith("/")) {
+            result.setProjectDir(projectHome);
+        } else {
+            result.setProjectDir(projectHome + "/");
+        }
+
         result.setPackageName(project.attr("package-name"));
+        String template = project.attr("template-root");
+        if (template.startsWith("classpath:")) {
+            result.setTemplateRoot(template.substring(10));
+        } else {
+            result.setTemplateRoot("/template");
+        }
 
         Elements datasource = project.getElementsByTag("datasource");
         if (null != datasource && 0 < datasource.size()) {

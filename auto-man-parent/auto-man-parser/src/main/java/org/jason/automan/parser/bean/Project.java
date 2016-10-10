@@ -11,6 +11,7 @@ public class Project {
     private String projectName;
     private String projectDir;
     private String packageName;
+    private String templateRoot;
     private DataSourceConfig dataSourceConfig;
     private Dubbo dubboConfig;
     private Log4jELK log4jConfig;
@@ -38,6 +39,14 @@ public class Project {
 
     public void setProjectDir(String projectDir) {
         this.projectDir = projectDir;
+    }
+
+    public String getTemplateRoot() {
+        return templateRoot;
+    }
+
+    public void setTemplateRoot(String templateRoot) {
+        this.templateRoot = templateRoot;
     }
 
     public String getPackageName() {

@@ -1,8 +1,8 @@
 package org.jason.automan;
 
-import freemarker.template.Template;
-import org.jason.automan.bean.FileType;
 import org.jason.automan.constants.StringConstants;
+import org.jason.automan.template.TemplateConfig;
+import org.jason.automan.template.TemplateGenerateConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,39 +17,45 @@ import java.util.Map;
  */
 public class Processer {
     private static final Logger logger = LoggerFactory.getLogger(Processer.class);
-    private ProcesserContext processerContext;
+    private ProcesserContext context;
+    private TemplateManager templateManager;
 
-    public Processer(ProcesserContext processerContext) {
-        this.processerContext = processerContext;
+    public Processer(ProcesserContext context) {
+        this.context = context;
+        templateManager = new TemplateManager(new TemplateConfig(context.getTemplateRepository(), false));
     }
 
-    public void generate(Template template, Map<String, Object> root, String filePath, String fileName, FileType
-            fileType) {
-        if (null == filePath || 0 == filePath.length() || null == fileName || 0 == fileName.length()) {
-            throw new IllegalArgumentException("file path and file name not be null.");
+    public void generate(TemplateGenerateConfiguration templateKey, Map<String, Object> root, String fileName) {
+        if (null == fileName || 0 == fileName.length()) {
+            throw new IllegalArgumentException("file name not be null.");
         }
 
         if (null == root) {
             root = new HashMap<>();
         }
 
-        root.put(StringConstants.PROJECT_BASE_PACKAGE, processerContext.getBasePackage());
-        root.put(StringConstants.PROJECT_HOME, processerContext.getProjectHome());
-        root.put(StringConstants.PROJECT_BASE, processerContext.getProjectBase());
+        root.put(StringConstants.PROJECT_BASE_PACKAGE, context.getBasePackage());
+        root.put(StringConstants.PROJECT_HOME, context.getProjectHome());
+        root.put(StringConstants.PROJECT_BASE, context.getProjectBase());
 
-        if (fileName.endsWith("/")) {
-            fileName = fileName.substring(0, fileName.length() - 1);
-        }
-
-        File dir = new File(filePath);
+        StringBuilder dirSb = new StringBuilder();
+        dirSb.append(context.getProjectHome())
+                .append(context.getProjectName())
+                .append(templateKey.modulePath)
+                .append("/src/main/")
+                .append(templateKey.fileCategory.value)
+                .append("/")
+                .append(context.getProjectBase())
+                .append(templateKey.targetFilePath);
+        File dir = new File(dirSb.toString());
         if (!dir.exists() && !dir.mkdirs()) {
             throw new IllegalStateException("Failed to create directory :" + fileName);
         }
 
         FileWriter writer = null;
         try {
-            writer = new FileWriter(new File(fileName, fileName + fileType.value));
-            template.process(root, writer);
+            writer = new FileWriter(new File(dirSb.toString(), fileName + templateKey.fileType.value));
+            templateManager.getTemplate(templateKey.templateName).process(root, writer);
             writer.flush();
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);

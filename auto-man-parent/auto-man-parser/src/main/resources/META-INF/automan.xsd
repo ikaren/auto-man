@@ -23,6 +23,7 @@
             <xsd:attribute name="project-name" type="xsd:string" use="required"/>
             <xsd:attribute name="project-dir" type="xsd:string" use="required"/>
             <xsd:attribute name="package-name" type="xsd:string" use="required"/>
+            <xsd:attribute name="template-root" type="xsd:string" default="classpath:/template" use="required"/>
         </xsd:complexType>
     </xsd:element>
 

@@ -4,6 +4,7 @@ import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.Template;
 import org.jason.automan.constants.StringConstants;
+import org.jason.automan.template.TemplateConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,27 +16,18 @@ import java.util.Map;
  * Created by Jason.Xia on 16/9/29.
  */
 public class TemplateManager {
-    private static TemplateManager instance;
-
-    static {
-        instance = new TemplateManager();
-        instance.init();
-    }
-
     private Configuration configuration;
     private String templateFileDir;
-    private Map<String, Template> templateMap = new HashMap<>();
+    private Map<String, Template> templates = new HashMap<>();
+    private TemplateConfig templateConfig;
 
-    private TemplateManager getInstance() {
-        if (null == instance) {
-            instance = new TemplateManager();
-            instance.init();
-        }
-
-        return instance;
+    public TemplateManager(TemplateConfig config) {
+        this.templateConfig = config;
+        this.templateFileDir = config.getTemplateFileDir();
+        init();
     }
 
-    public void init() {
+    protected void init() {
         if (null == configuration) {
             synchronized (this) {
                 if (null == configuration) {
@@ -75,11 +67,22 @@ public class TemplateManager {
         }
 
         configuration.setObjectWrapper(new DefaultObjectWrapperBuilder(FreeMarkerVersion.getVersion()).build());
+        if (!templateConfig.isLazyLoadTemplate()) {
+            initTemplate();
+        }
     }
 
-    public Template build(String templateName) {
-        if (templateMap.containsKey(templateName)) {
-            return templateMap.get(templateName);
+    public Template getTemplate(String templateName) {
+        if (templates.containsKey(templateName)) {
+            return templates.get(templateName);
+        }
+
+        return build(templateName);
+    }
+
+    protected Template build(String templateName) {
+        if (templates.containsKey(templateName)) {
+            return templates.get(templateName);
         }
 
         Template template;
@@ -88,10 +91,44 @@ public class TemplateManager {
             if (null == template) {
                 throw new IllegalArgumentException("cannot find the template :" + templateName);
             }
+
+            templates.put(templateName, template);
         } catch (IOException e) {
             throw new IllegalStateException(e.getMessage(), e);
         }
 
         return template;
+    }
+
+    private void initTemplate() {
+        File root = new File(templateFileDir);
+        if (root.exists() && root.isDirectory()) {
+            loadTemplate(root.getAbsolutePath());
+        } else {
+            throw new IllegalStateException("Cannot resolved the template path:" + templateFileDir);
+        }
+    }
+
+    private void loadTemplate(String filePath) {
+        File parent = new File(filePath);
+        File[] files = parent.listFiles();
+        if (null == files || 0 == files.length) {
+            return;
+        }
+
+        for (File file : files) {
+            if (file.isDirectory()) {
+                loadTemplate(file.getAbsolutePath());
+            }
+
+            if (file.getName().endsWith(".ftl") && file.getName().startsWith(templateFileDir)) {
+                String relativityPath = file.getName().replace(templateFileDir, "");
+                if (relativityPath.startsWith("/")) {
+                    relativityPath = relativityPath.substring(1);
+                }
+
+                build(relativityPath);
+            }
+        }
     }
 }

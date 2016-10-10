@@ -7,6 +7,7 @@ import java.util.Map;
  * Created by Jason.Xia on 16/10/6.
  */
 public class ProcesserContext {
+    private String projectName;
     /**
      * absolute dir.
      * eg:/Users/username/project/
@@ -29,6 +30,35 @@ public class ProcesserContext {
     private String templateRepository;
 
     private Map<String, String> extra = new HashMap<>();
+
+    public ProcesserContext(String projectName, String projectHome, String basePackage, String projectBase, String
+            templateRepository) {
+        this.projectName = projectName;
+        this.projectHome = projectHome;
+
+        this.basePackage = basePackage;
+        if (null == projectBase) {
+            this.projectBase = "/" + basePackage.replace(".", "/");
+        }
+
+        this.templateRepository = templateRepository;
+    }
+
+    public ProcesserContext(String projectName, String projectHome, String basePackage) {
+        this(projectName, projectHome, basePackage, null, null);
+    }
+
+    public ProcesserContext(String projectName, String projectHome, String basePackage, String templateRepository) {
+        this(projectName, projectHome, basePackage, null, templateRepository);
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
     public String getProjectHome() {
         return projectHome;
