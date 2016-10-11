@@ -5,7 +5,7 @@ package org.jason.automan.parser.bean;
  */
 public class DubboConfig {
     private String env;
-    private int port;
+    private String port;
     private String zkAddress;
     private String group;
 
@@ -17,11 +17,11 @@ public class DubboConfig {
         this.env = env;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(String port) {
         this.port = port;
     }
 

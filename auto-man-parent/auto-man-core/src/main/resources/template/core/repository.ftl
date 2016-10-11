@@ -1,6 +1,11 @@
 package ${projectBasePackage}.core.repository;
 
+<#if isDomain?string('true','false') == "true">
+import ${projectBasePackage}.core.domain.${vo.simpleName};
+<#else>
 import ${projectBasePackage}.core.vo.${vo.simpleName};
+</#if>
+
 
 import java.util.List;
 
@@ -15,7 +20,7 @@ public interface I${vo.simpleName}Repository {
      * @param ${vo.uncapFirstName}List
      * @return
      */
-    public int insert${vo.simpleName}Batch(List<${vo.simpleName}> ${vo.uncapFirstName}List);
+    int insert${vo.simpleName}Batch(List<${vo.simpleName}> ${vo.uncapFirstName}List);
 
     <#-- Retrieve -->
     /**
@@ -24,7 +29,7 @@ public interface I${vo.simpleName}Repository {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    public ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
+    ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
 
     <#-- Update -->
     /**
@@ -33,7 +38,7 @@ public interface I${vo.simpleName}Repository {
      * @param ${vo.uncapFirstName}
      * @return
      */
-    public int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName});
+    int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName});
 
     <#-- Delete -->
     /**
@@ -42,5 +47,5 @@ public interface I${vo.simpleName}Repository {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    public int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
+    int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
 }

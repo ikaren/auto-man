@@ -7,7 +7,7 @@ public class DatabaseConfig {
     private String env;
     private String dbName;
     private String host;
-    private int port;
+    private String port;
     private String username;
     private String password;
 
@@ -35,11 +35,11 @@ public class DatabaseConfig {
         this.host = host;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(String port) {
         this.port = port;
     }
 

@@ -13,7 +13,7 @@ public class Clazz<T> {
     private boolean isPrimitiveWrapper;
     private String desc;
     private T superclass;
-
+    private String tableName;
     public String getUncapFirstName() {
         return uncapFirstName;
     }
@@ -84,5 +84,13 @@ public class Clazz<T> {
 
     public void setSuperclass(T superclass) {
         this.superclass = superclass;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 }

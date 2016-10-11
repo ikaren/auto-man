@@ -1,10 +1,10 @@
-package ${projectBasePackage}.exception;
+package ${projectBasePackage}.core.exception;
 
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
 */
 public class ${projectName.capFirst}Exception extends RuntimeException{
-    public ${projectName}Exception() {
+    public ${projectName.capFirst}Exception() {
         super();
     }
 

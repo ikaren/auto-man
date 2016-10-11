@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>${PARENT_ARTIFACT}</artifactId>
-        <groupId>${GROUP_ID}</groupId>
+        <groupId>${projectBasePackage}</groupId>
+        <artifactId>${projectName.uncapFirst}</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>${PROJECT_NAME}-facade</artifactId>
+    <artifactId>${projectName.uncapFirst}-facade</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.hans.jhd.infra.themis</groupId>

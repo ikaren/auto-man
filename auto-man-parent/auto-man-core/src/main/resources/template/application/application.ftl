@@ -37,7 +37,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int insert${domain.simpleName}Batch(List<${domain.simpleName}> ${domain.uncapFirstName}List) {
-        if (null == express) {
+        if (null == ${domain.uncapFirstName}List) {
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -107,7 +107,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int insert${vo.simpleName}Batch(List<${vo.simpleName}> ${vo.uncapFirstName}List){
-        if (null == express) {
+        if (null == ${vo.uncapFirstName}List) {
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 

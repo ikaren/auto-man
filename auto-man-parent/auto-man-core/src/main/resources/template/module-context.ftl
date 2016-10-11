@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <context:component-scan base-package="${baseModulePackge}">
+    <context:component-scan base-package="${baseModulePackage}">
     </context:component-scan>
 
 </beans>

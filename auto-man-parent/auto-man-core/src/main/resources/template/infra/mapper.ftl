@@ -1,6 +1,10 @@
 package ${projectBasePackage}.infra.sql;
 
+<#if isDomain?string('true','false') == "true">
+import ${projectBasePackage}.core.domain.${vo.simpleName};
+<#else>
 import ${projectBasePackage}.core.vo.${vo.simpleName};
+</#if>
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,7 +20,7 @@ public interface ${vo.simpleName}Mapper {
      * @param ${vo.uncapFirstName}List
      * @return
      */
-    public int insert${vo.simpleName}Batch(@Param("list")List<${vo.simpleName}> ${vo.uncapFirstName}List);
+    int insert${vo.simpleName}Batch(@Param("list")List<${vo.simpleName}> ${vo.uncapFirstName}List);
 
     <#-- Retrieve -->
     /**
@@ -25,7 +29,7 @@ public interface ${vo.simpleName}Mapper {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    public ${vo.simpleName} select${vo.simpleName}ById(@Param("id")long ${vo.uncapFirstName}Id);
+    ${vo.simpleName} select${vo.simpleName}ById(@Param("id")long ${vo.uncapFirstName}Id);
 
     <#-- Update -->
     /**
@@ -34,7 +38,7 @@ public interface ${vo.simpleName}Mapper {
      * @param ${vo.uncapFirstName}
      * @return
      */
-    public int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName});
+    int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName});
 
     <#-- Delete -->
     /**
@@ -43,5 +47,5 @@ public interface ${vo.simpleName}Mapper {
     * @param ${vo.uncapFirstName}Id
     * @return
     */
-    public int delete${vo.simpleName}ById(@Param("id")long ${vo.uncapFirstName}Id);
+    int delete${vo.simpleName}ById(@Param("id")long ${vo.uncapFirstName}Id);
 }

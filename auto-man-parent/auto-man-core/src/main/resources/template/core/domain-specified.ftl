@@ -1,5 +1,6 @@
 package ${projectBasePackage}.core.domain;
 
+import ${projectBasePackage}.core.repository.I${domain.simpleName}Repository;
 <#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
 import ${projectBasePackage}.core.vo.${vo.simpleName};
@@ -7,9 +8,18 @@ import ${projectBasePackage}.core.repository.I${vo.simpleName}Repository;
 </#list>
 </#if>
 import org.albert.common.domain.Entity;
-
+<#if domain.properties?exists>
+    <#list domain.properties as property>
+        <#if property.javaType == "Date">
+import java.util.Date;
+        <#break>
+        </#if>
+    </#list>
+</#if>
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import java.util.List;
 
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
@@ -24,6 +34,10 @@ public class ${domain.simpleName} extends Entity{
     private ${property.javaType} ${property.propertyName};
 </#list>
 </#if>
+
+    @Inject
+    private I${domain.simpleName}Repository ${domain.uncapFirstName}Repository;
+
 <#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
     @Inject

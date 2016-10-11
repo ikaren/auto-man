@@ -41,7 +41,7 @@
             <xsd:attribute name="env" type="environment" use="required"/>
             <xsd:attribute name="db-name" type="xsd:string" use="required"/>
             <xsd:attribute name="host" type="xsd:string" default="127.0.0.1" use="required"/>
-            <xsd:attribute name="port" type="xsd:int" default="3306"/>
+            <xsd:attribute name="port" type="xsd:string" default="3306"/>
             <xsd:attribute name="username" type="xsd:string" default="root" use="required"/>
             <xsd:attribute name="password" type="xsd:string" use="required"/>
         </xsd:complexType>
@@ -60,7 +60,7 @@
     <xsd:element name="dubbo-config">
         <xsd:complexType>
             <xsd:attribute name="env" type="environment" use="required"/>
-            <xsd:attribute name="port" type="xsd:int" default="20880" use="required"/>
+            <xsd:attribute name="port" type="xsd:string" default="20880" use="required"/>
             <xsd:attribute name="zk-address" type="xsd:string" default="127.0.0.1:2181" use="required"/>
             <xsd:attribute name="group" type="xsd:string" use="required"/>
         </xsd:complexType>
@@ -78,7 +78,7 @@
     <xsd:element name="log4j-elk-cfg">
         <xsd:complexType>
             <xsd:attribute name="env" type="environment" use="required"/>
-            <xsd:attribute name="port" type="xsd:int" default="8890" use="required"/>
+            <xsd:attribute name="port" type="xsd:string" default="8890" use="required"/>
             <xsd:attribute name="host" type="xsd:string" default="127.0.0.1" use="required"/>
             <xsd:attribute name="reconn-delay" type="xsd:long" default="50000" use="required"/>
         </xsd:complexType>

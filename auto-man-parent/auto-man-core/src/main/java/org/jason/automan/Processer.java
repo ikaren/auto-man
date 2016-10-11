@@ -39,22 +39,57 @@ public class Processer {
         root.put(StringConstants.PROJECT_HOME, context.getProjectHome());
         root.put(StringConstants.PROJECT_BASE, context.getProjectBase());
 
-        root.put("projectName", new ProjectName(context.getProjectName().substring(0, 1).toUpperCase() + context
-                .getProjectName().substring(1), context.getProjectName().substring(0, 1).toLowerCase() + context
-                .getProjectName().substring(1)));
-        root.put("projectLayer", context.getProjectLayer());
+        root.put(StringConstants.PROJECT_NAME, new ProjectName(context.getProjectName().substring(0, 1).toUpperCase()
+                + context.getProjectName().substring(1), context.getProjectName().substring(0, 1).toLowerCase() +
+                context.getProjectName().substring(1)));
+        root.put(StringConstants.PROJECT_LAYER, context.getProjectLayer());
+
         StringBuilder dirSb = new StringBuilder();
-        dirSb.append(context.getProjectHome())
-                .append(context.getProjectLayer())
-                .append("-")
-                .append(context.getProjectName())
-                .append("/")
-                .append(context.getProjectName())
-                .append(templateKey.modulePath)
-                .append("/src/main/")
-                .append(templateKey.fileCategory.value)
-                .append(context.getProjectBase())
-                .append(templateKey.targetFilePath);
+        switch (templateKey.fileCategory) {
+            case CODE:
+                dirSb.append(context.getProjectHome())
+                        .append(context.getProjectLayer())
+                        .append("-")
+                        .append(context.getProjectName())
+                        .append("/")
+                        .append(context.getProjectName())
+                        .append(templateKey.modulePath)
+                        .append("/src/main/")
+                        .append(templateKey.fileCategory.value)
+                        .append(context.getProjectBase())
+                        .append(templateKey.targetFilePath);
+                break;
+            case POM:
+                dirSb.append(context.getProjectHome())
+                        .append(context.getProjectLayer())
+                        .append("-")
+                        .append(context.getProjectName());
+                if (!"".equals(templateKey.modulePath)) {
+                    dirSb.append("/")
+                            .append(context.getProjectName())
+                            .append(templateKey.modulePath);
+                }
+                break;
+            case RESOURCES_PROD:
+            case RESOURCES_BETA:
+            case RESOURCES_ALPHA:
+            case RESOURCES_DEV:
+            case RESOURCES:
+                dirSb.append(context.getProjectHome())
+                        .append(context.getProjectLayer())
+                        .append("-")
+                        .append(context.getProjectName())
+                        .append("/")
+                        .append(context.getProjectName())
+                        .append(templateKey.modulePath)
+                        .append("/src/main/")
+                        .append(templateKey.fileCategory.value)
+                        .append(templateKey.targetFilePath);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported File Category: " + templateKey.fileCategory);
+        }
+
         File dir = new File(dirSb.toString());
         if (!dir.exists() && !dir.mkdirs()) {
             throw new IllegalStateException("Failed to create directory :" + fileName);
@@ -65,7 +100,7 @@ public class Processer {
             writer = new FileWriter(new File(dirSb.toString(), fileName + templateKey.fileType.value));
             templateManager.getTemplate(templateKey.templateName).process(root, writer);
             writer.flush();
-            System.out.println("Generate file: " + fileName + " OK!");
+            System.out.println("Generate file: " + fileName + " OK! path: " + dirSb);
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         } finally {

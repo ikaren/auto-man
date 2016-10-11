@@ -8,4 +8,6 @@ public interface StringConstants {
     String PROJECT_BASE_PACKAGE = "projectBasePackage";
     String PROJECT_HOME = "projectHome";
     String PROJECT_BASE = "projectBase";
+    String PROJECT_NAME = "projectName";
+    String PROJECT_LAYER = "projectLayer";
 }

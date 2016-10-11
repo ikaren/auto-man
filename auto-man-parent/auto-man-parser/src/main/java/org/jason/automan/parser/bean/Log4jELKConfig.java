@@ -5,7 +5,7 @@ package org.jason.automan.parser.bean;
  */
 public class Log4jELKConfig {
     private String env;
-    private int port;
+    private String port;
     private String host;
     private long reconnectDelay;
 
@@ -17,11 +17,11 @@ public class Log4jELKConfig {
         this.env = env;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(String port) {
         this.port = port;
     }
 

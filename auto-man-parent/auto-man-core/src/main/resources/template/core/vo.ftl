@@ -1,7 +1,14 @@
 package ${projectBasePackage}.core.vo;
 
 import org.albert.common.domain.Entity;
-
+<#if domain.properties?exists>
+    <#list domain.properties as property>
+        <#if property.javaType == "Date">
+import java.util.Date;
+            <#break>
+        </#if>
+    </#list>
+</#if>
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
 */

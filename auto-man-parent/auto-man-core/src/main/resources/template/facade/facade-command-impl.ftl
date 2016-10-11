@@ -21,6 +21,7 @@ import org.slf4j.MDC;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
@@ -35,16 +36,16 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     /**
     * create new ${domain.simpleName}
     *
-    * @param ${domain.uncapFirstName}List
+    * @param ${domain.uncapFirstName}DTOList
     * @return
     */
     @Override
-    Response<Integer> insert${domain.simpleName}Batch(List<${domain.simpleName}DTO> ${domain.uncapFirstName}DTOList,String traceId){
+    public Response<Integer> insert${domain.simpleName}Batch(List<${domain.simpleName}DTO> ${domain.uncapFirstName}DTOList,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[insert${domain.simpleName}Batch] request:{}", ${domain.uncapFirstName}DTOList);
-        Response<Interger> response = new Response<>();
+        Response<Integer> response = new Response<>();
         try{
-            ${domain.simpleName}  param= ${domain.simpleName}Assembler.dtoToDomain(${domain.uncapFirstName}DTOList);
+            List<${domain.simpleName}>  param= ${domain.simpleName}Assembler.dtoToDomainBatch(${domain.uncapFirstName}DTOList);
             int result = this.${domain.uncapFirstName}Application.insert${domain.simpleName}Batch(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
@@ -70,10 +71,10 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    Response<Integer> update${domain.simpleName}ById(${domain.simpleName} ${domain.uncapFirstName},String traceId){
+    public Response<Integer> update${domain.simpleName}ById(${domain.simpleName}DTO ${domain.uncapFirstName},String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[update${domain.simpleName}ById] request:{}", ${domain.uncapFirstName});
-        Response<Interger> response = new Response<>();
+        Response<Integer> response = new Response<>();
         try{
             ${domain.simpleName}  param= ${domain.simpleName}Assembler.dtoToDomain(${domain.uncapFirstName});
             int result = this.${domain.uncapFirstName}Application.update${domain.simpleName}ById(param);
@@ -101,10 +102,10 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    Response<Integer> delete${domain.simpleName}ById(String ${domain.uncapFirstName}Id,String traceId){
+    public Response<Integer> delete${domain.simpleName}ById(String ${domain.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[delete${domain.simpleName}ById] request:{}", ${domain.uncapFirstName});
-        Response<Interger> response = new Response<>();
+        logger.debug("[delete${domain.simpleName}ById] request:{}", ${domain.uncapFirstName}Id);
+        Response<Integer> response = new Response<>();
         try{
             int result = this.${domain.uncapFirstName}Application.delete${domain.simpleName}ById(Long.valueOf(${domain.uncapFirstName}Id));
             response.setCode(ResponseCode.SUCCESS);
@@ -133,12 +134,12 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    Response<Integer> insert${vo.simpleName}Batch(List<${vo.simpleName}DTO> ${vo.uncapFirstName}DTOList,String traceId){
+    public Response<Integer> insert${vo.simpleName}Batch(List<${vo.simpleName}DTO> ${vo.uncapFirstName}DTOList,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[insert${vo.simpleName}Batch] request:{}", ${vo.uncapFirstName}DTOList);
-        Response<Interger> response = new Response<>();
+        Response<Integer> response = new Response<>();
         try{
-            ${vo.simpleName}  param= ${domain.simpleName}Assembler.${vo.uncapFirstName}dtoToDomain(${vo.uncapFirstName}DTOList);
+            List<${vo.simpleName}>  param= ${domain.simpleName}Assembler.${vo.uncapFirstName}DtoToDomainBatch(${vo.uncapFirstName}DTOList);
             int result = this.${domain.uncapFirstName}Application.insert${vo.simpleName}Batch(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
@@ -164,12 +165,12 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    Response<Integer> update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName},String traceId){
+    public Response<Integer> update${vo.simpleName}ById(${vo.simpleName}DTO ${vo.uncapFirstName},String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[update${vo.simpleName}ById] request:{}", ${vo.uncapFirstName});
-        Response<Interger> response = new Response<>();
+        Response<Integer> response = new Response<>();
         try{
-            ${vo.simpleName}  param= ${domain.simpleName}Assembler.${vo.uncapFirstName}dtoToDomain(${vo.uncapFirstName});
+            ${vo.simpleName}  param= ${domain.simpleName}Assembler.${vo.uncapFirstName}DtoToDomain(${vo.uncapFirstName});
             int result = this.${domain.uncapFirstName}Application.update${vo.simpleName}ById(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
@@ -195,10 +196,10 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    Response<Integer> delete${vo.simpleName}ById(String ${vo.uncapFirstName}Id,String traceId){
+    public Response<Integer> delete${vo.simpleName}ById(String ${vo.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[delete${vo.simpleName}ById] request:{}", ${vo.uncapFirstName});
-        Response<Interger> response = new Response<>();
+        logger.debug("[delete${vo.simpleName}ById] request:{}", ${vo.uncapFirstName}Id);
+        Response<Integer> response = new Response<>();
         try{
             int result = this.${domain.uncapFirstName}Application.delete${vo.simpleName}ById(Long.valueOf(${vo.uncapFirstName}Id));
             response.setCode(ResponseCode.SUCCESS);

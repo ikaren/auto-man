@@ -43,7 +43,7 @@ public class ProcesserContext {
             this.projectBase = "/" + basePackage.replace(".", "/");
         }
 
-        String[] split = basePackage.split(".");
+        String[] split = basePackage.split("\\.");
         if (split.length >= 2) {
             this.projectLayer = split[split.length - 2];
         } else {

@@ -45,7 +45,7 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
         Response<${domain.simpleName}DTO> response = new Response<>();
         try{
             ${domain.simpleName} ${domain.uncapFirstName} = this.${domain.uncapFirstName}Application.select${domain.simpleName}ById(Long.valueOf(${domain.uncapFirstName}Id));
-            ${domain.simpleName}DTO result = ${domain.simpleName}Assembler.domainToDTO(${domain.uncapFirstName});
+            ${domain.simpleName}DTO result = ${domain.simpleName}Assembler.domainToDto(${domain.uncapFirstName});
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("查询成功");
@@ -78,7 +78,7 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
         Response<${vo.simpleName}DTO> response = new Response<>();
         try{
             ${vo.simpleName} ${vo.uncapFirstName} = this.${domain.uncapFirstName}Application.select${vo.simpleName}ById(Long.valueOf(${vo.uncapFirstName}Id));
-            ${vo.simpleName}DTO result = ${domain.simpleName}Assembler.${vo.uncapFirstName}DomainToDTO(${vo.uncapFirstName});
+            ${vo.simpleName}DTO result = ${domain.simpleName}Assembler.${vo.uncapFirstName}DomainToDto(${vo.uncapFirstName});
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("查询成功");

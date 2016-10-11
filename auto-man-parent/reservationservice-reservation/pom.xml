@@ -10,17 +10,17 @@
 
     </parent>
 
-    <groupId>${projectBasePackage}</groupId>
-    <artifactId>${projectName.uncapFirst}</artifactId>
+    <groupId>com.hans.jhd.service.reservation</groupId>
+    <artifactId>reservation</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>${projectName.uncapFirst}-core</module>
-        <module>${projectName.uncapFirst}-infra</module>
-        <module>${projectName.uncapFirst}-application</module>
-        <module>${projectName.uncapFirst}-facade</module>
-        <module>${projectName.uncapFirst}-facade-impl</module>
+        <module>reservation-core</module>
+        <module>reservation-infra</module>
+        <module>reservation-application</module>
+        <module>reservation-facade</module>
+        <module>reservation-facade-impl</module>
     </modules>
 
 </project>

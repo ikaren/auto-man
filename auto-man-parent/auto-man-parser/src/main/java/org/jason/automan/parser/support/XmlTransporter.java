@@ -92,7 +92,7 @@ public class XmlTransporter implements Transporter {
                 databaseConfig.setEnv(item.attr("env"));
                 databaseConfig.setDbName(item.attr("db-name"));
                 databaseConfig.setHost(item.attr("host"));
-                databaseConfig.setPort(Integer.parseInt(item.attr("port")));
+                databaseConfig.setPort(item.attr("port"));
                 databaseConfig.setUsername(item.attr("username"));
                 databaseConfig.setPassword(item.attr("password"));
 
@@ -112,7 +112,7 @@ public class XmlTransporter implements Transporter {
             for (Element item : envConfig) {
                 DubboConfig dubboConfig = new DubboConfig();
                 dubboConfig.setEnv(item.attr("env"));
-                dubboConfig.setPort(Integer.parseInt(item.attr("port")));
+                dubboConfig.setPort(item.attr("port"));
                 dubboConfig.setZkAddress(item.attr("zk-address"));
                 dubboConfig.setGroup(item.attr("group"));
 
@@ -131,7 +131,7 @@ public class XmlTransporter implements Transporter {
             for (Element item : envConfig) {
                 Log4jELKConfig log4jELKConfig = new Log4jELKConfig();
                 log4jELKConfig.setEnv(item.attr("env"));
-                log4jELKConfig.setPort(Integer.parseInt(item.attr("port")));
+                log4jELKConfig.setPort(item.attr("port"));
                 log4jELKConfig.setHost(item.attr("host"));
                 log4jELKConfig.setReconnectDelay(Long.parseLong(item.attr("reconn-delay")));
 

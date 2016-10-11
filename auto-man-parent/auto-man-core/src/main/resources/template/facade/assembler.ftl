@@ -1,7 +1,17 @@
 package ${projectBasePackage}.facade.impl.assembler;
 
 import ${projectBasePackage}.core.domain.${domain.simpleName};
+<#if domain.bindingVOs?exists>
+    <#list domain.bindingVOs as vo>
+    import ${projectBasePackage}.core.vo.${vo.simpleName};
+    </#list>
+</#if>
 import ${projectBasePackage}.facade.dto.${domain.simpleName}DTO;
+<#if domain.bindingVOs?exists>
+    <#list domain.bindingVOs as vo>
+    import ${projectBasePackage}.facade.dto.${vo.simpleName}DTO;
+    </#list>
+</#if>
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.util.ArrayList;
@@ -10,7 +20,7 @@ import java.util.List;
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
 */
-public class ExpressAssembler {
+public class ${domain.simpleName}Assembler {
 
     public static List<${domain.simpleName}> dtoToDomainBatch(List<${domain.simpleName}DTO> params) throws Exception {
         if (null == params) {
