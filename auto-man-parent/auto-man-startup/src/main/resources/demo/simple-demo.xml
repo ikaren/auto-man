@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://org.jason.automan/schema/automan http://org.jason.automan/schema/automan/automan.xsd">
 
     <project id="testProject" project-name="reservation" project-dir="/Users/yuqingxia/ci-test"
-             package-name="com.hans.jhd.service.reservation" template-root="classpath:/template">
+             package-name="com.hans.jhd.service.reservation">
         <datasource id="datasourceConfig">
             <database-config env="PROD" db-name="prod_tags" host="127.0.0.1" port="3306" username="root"
                              password="123"/>
@@ -31,9 +31,9 @@
 
         <data-table id="reservationTable" name="reservation" desc="预约表" class-name="Reservation" is-domain="true"
                binding-domain="Reservation">
-            <column name="tel_num" jdbcType="VARCHAR" property="telNum"/>
-            <column name="account_id" jdbcType="BIGINT" property="accountId"/>
-            <column name="reservation_status" jdbcType="INTEGER" property="reservationStatus"/>
+            <column name="tel_num" jdbcType="VARCHAR" property="telNum" desc="电话号码"/>
+            <column name="account_id" jdbcType="BIGINT" property="accountId" desc="账号id"/>
+            <column name="reservation_status" jdbcType="INTEGER" property="reservationStatus" desc="预约状态"/>
         </data-table>
 
         <data-table id="traceTable" name="reservation_trace" desc="预约跟踪表" class-name="ReservationTrace" is-domain="true"

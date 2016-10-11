@@ -51,9 +51,9 @@ public class XmlTransporter implements Transporter {
         result.setPackageName(project.attr("package-name"));
         String template = project.attr("template-root");
         if (template.startsWith("classpath:")) {
-            result.setTemplateRoot("." + template.substring(10));
+            result.setTemplateRoot(template.substring(10));
         } else {
-            result.setTemplateRoot("./template");
+            result.setTemplateRoot("/template");
         }
 
         Elements datasource = project.getElementsByTag("datasource");

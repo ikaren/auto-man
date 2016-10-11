@@ -126,7 +126,7 @@ public class XmlParser extends AbstractParser {
 
         processer.generate(TemplateGenerateConfiguration.LOG4J, null, "log4j");
         processer.generate(TemplateGenerateConfiguration.META_INF_ROOT, null, "root");
-
+        processer.generate(TemplateGenerateConfiguration.ASSEMBLY,null,"assembly");
 
     }
 

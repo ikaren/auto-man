@@ -7,11 +7,7 @@ import java.util.List;
  */
 public class Domain extends Clazz<Domain> {
     private List<Property> properties;
-//    private List<Repository> repositories;
-//    private List<Interface> interfaces;
-//    private List<Mapper> mappers;
     private List<ValueObject> bindingVOs;
-//    private String projectBasePackage;
     private boolean hasConstructors;
 
     public Domain() {

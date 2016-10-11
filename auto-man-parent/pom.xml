@@ -63,7 +63,19 @@
         </dependencies>
 
     </dependencyManagement>
-
+    <profiles>
+        <profile>
+            <id>JDK1.7</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.7</maven.compiler.source>
+                <maven.compiler.target>1.7</maven.compiler.target>
+                <encoding>UTF-8</encoding>
+            </properties>
+        </profile>
+    </profiles>
     <developers>
         <developer>
             <name>Jason.Xia</name>

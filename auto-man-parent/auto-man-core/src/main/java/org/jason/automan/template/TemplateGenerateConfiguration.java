@@ -39,9 +39,12 @@ public enum TemplateGenerateConfiguration {
     MYBATIS_MAPPER("infra/sql-mapper.ftl", "-infra", "/mybatis/mapper", FileType.XML, FileCategory.RESOURCES),
     MYBATIS_DB("infra/db-mybatis.ftl", "-infra", "/mybatis", FileType.XML, FileCategory.RESOURCES),
     MYBATIS_PERSISTENCE("infra/persistence-context.ftl", "-infra", "/mybatis", FileType.XML, FileCategory.RESOURCES),
-    PROD_DATABASE_PROPERTIES("infra/database.ftl", "-infra", "/props", FileType.PROPERTIES, FileCategory.RESOURCES_PROD),
-    BETA_DATABASE_PROPERTIES("infra/database.ftl", "-infra", "/props", FileType.PROPERTIES, FileCategory.RESOURCES_BETA),
-    ALPHA_DATABASE_PROPERTIES("infra/database.ftl", "-infra", "/props", FileType.PROPERTIES, FileCategory.RESOURCES_ALPHA),
+    PROD_DATABASE_PROPERTIES("infra/database.ftl", "-infra", "/props", FileType.PROPERTIES, FileCategory
+            .RESOURCES_PROD),
+    BETA_DATABASE_PROPERTIES("infra/database.ftl", "-infra", "/props", FileType.PROPERTIES, FileCategory
+            .RESOURCES_BETA),
+    ALPHA_DATABASE_PROPERTIES("infra/database.ftl", "-infra", "/props", FileType.PROPERTIES, FileCategory
+            .RESOURCES_ALPHA),
     DEV_DATABASE_PROPERTIES("infra/database.ftl", "-infra", "/props", FileType.PROPERTIES, FileCategory.RESOURCES_DEV),
     // application
     APPLICATION_POM("application/application-pom.ftl", "-application", "", FileType.XML, FileCategory.POM),
@@ -64,8 +67,8 @@ public enum TemplateGenerateConfiguration {
             .RESOURCES_ALPHA),
     DEV_DUBBO_PROPERTIES("facade/dubbo-properties.ftl", "-facade-impl", "/props", FileType.PROPERTIES, FileCategory
             .RESOURCES_DEV),
-    LOG4J("facade/log4j.ftl", "-facade-impl", "", FileType.PROPERTIES, FileCategory.RESOURCES);
-
+    LOG4J("facade/log4j.ftl", "-facade-impl", "", FileType.PROPERTIES, FileCategory.RESOURCES),
+    ASSEMBLY("facade/assembly.ftl", "-facade-impl", "", FileType.XML, FileCategory.RESOURCES);
     public String templateName;
     public String modulePath;
     public String targetFilePath;
