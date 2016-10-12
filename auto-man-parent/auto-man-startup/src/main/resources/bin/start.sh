@@ -11,6 +11,8 @@ APPLICATION_HOME="$(cd "${APPLICATION_HOME}"; pwd)"
 
 APPLICATION_BASE="$(cd "${APPLICATION_HOME}/../"; pwd)"
 PROJECT_XML_HOME="$(cd "${APPLICATION_HOME}/../xml"; pwd)"
+TEMPLATE_HOME="$(cd "${APPLICATION_HOME}/../template"; pwd)"
+
 JVM_OPTS="-Dfile.encoding=UTF-8"
 
 if [ "$JAVA_HOME" != "" ]; then
@@ -27,4 +29,4 @@ done
 APPLICATION_MAIN="org.jason.automan.startup.AutoManBoot"
 
 echo "Auto-Man Starting ..."
-"$JAVA" -cp "$CLASSPATH" $JVM_OPTS $APPLICATION_MAIN "${PROJECT_XML_HOME}"
+"$JAVA" -cp "$CLASSPATH" $JVM_OPTS $APPLICATION_MAIN "${PROJECT_XML_HOME}" "${TEMPLATE_HOME}"

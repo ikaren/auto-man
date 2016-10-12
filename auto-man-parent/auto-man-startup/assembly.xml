@@ -13,6 +13,10 @@
             <directory>${project.basedir}/src/main/resources/demo</directory>
             <outputDirectory>xml</outputDirectory>
         </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources/template</directory>
+            <outputDirectory>template</outputDirectory>
+        </fileSet>
     </fileSets>
 
     <dependencySets>

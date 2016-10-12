@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://org.jason.automan/schema/automan http://org.jason.automan/schema/automan/automan.xsd">
 
     <project id="testProject" project-name="reservation" project-dir="/Users/yuqingxia/ci-test"
-             package-name="com.hans.jhd.service.reservation">
+             package-name="com.hans.jhd.service.reservation" template-root="/Users/yuqingxia/ThirdParty/auto-man1.0.0-SNAPSHOT/template">
         <datasource id="datasourceConfig">
             <database-config env="PROD" db-name="prod_tags" host="127.0.0.1" port="3306" username="root"
                              password="123"/>

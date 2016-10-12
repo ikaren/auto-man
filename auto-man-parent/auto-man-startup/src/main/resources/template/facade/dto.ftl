@@ -5,7 +5,7 @@ import org.albert.common.domain.CommonEntity;
 <#if vo.properties?exists>
     <#list vo.properties as property>
         <#if property.javaType == "Date">
-        import java.util.Date;
+import java.util.Date;
             <#break>
         </#if>
     </#list>
@@ -24,16 +24,16 @@ public class ${vo.simpleName}DTO extends CommonEntity{
     /**
     *  <#if property.desc?has_content>${property.desc}</#if>
     */
-    @ThemisFieldConfig(desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>")
-    private ${property.javaType} ${property.propertyName};
+    @ThemisFieldConfig(desc = "<#if property.desc?has_content>${property.desc}<#else>${vo.simpleName}</#if>")
+    private <#if property.javaType == "Long">String<#else >${property.javaType}</#if> ${property.propertyName};
 </#list>
 </#if>
 <#if vo.properties?exists>
 <#list vo.properties as property>
-    public ${property.javaType} get${property.propertyName?cap_first}() {
+    public <#if property.javaType == "Long">String<#else >${property.javaType}</#if> get${property.propertyName?cap_first}() {
         return this.${property.propertyName};
     }
-    public void set${property.propertyName?cap_first}(${property.javaType} ${property.propertyName}) {
+    public void set${property.propertyName?cap_first}(<#if property.javaType == "Long">String<#else >${property.javaType}</#if> ${property.propertyName}) {
         this.${property.propertyName} = ${property.propertyName};
     }
 </#list>

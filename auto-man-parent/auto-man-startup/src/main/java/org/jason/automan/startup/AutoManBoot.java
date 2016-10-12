@@ -12,6 +12,12 @@ import java.util.List;
 public class AutoManBoot {
     public static void main(String[] args) {
         String rootPath = args[0];
+        String templatePath = args[1];
+        if (null == templatePath) {
+            System.out.println("Need template path.");
+            return;
+        }
+
         System.out.println(rootPath);
         List<String> projects = new ArrayList<>();
         if (null != rootPath) {
