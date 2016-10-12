@@ -1,8 +1,8 @@
 package ${projectBasePackage}.core.vo;
 
 import org.albert.common.domain.Entity;
-<#if domain.properties?exists>
-    <#list domain.properties as property>
+<#if vo.properties?exists>
+    <#list vo.properties as property>
         <#if property.javaType == "Date">
 import java.util.Date;
             <#break>

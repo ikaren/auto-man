@@ -36,6 +36,12 @@
             <column name="reservation_status" jdbcType="INTEGER" property="reservationStatus" desc="预约状态"/>
         </data-table>
 
+        <data-table id="goodsTable" name="goods" desc="商品表" class-name="Goods" is-domain="false" binding-domain="Reservation">
+            <column name="reservation_id" jdbcType="BIGINT" property="reservationId"/>
+            <column name="url" jdbcType="VARCHAR" property="url"/>
+            <column name="time" jdbcType="TIMESTAMP" property="time"/>
+        </data-table>
+
         <data-table id="traceTable" name="reservation_trace" desc="预约跟踪表" class-name="ReservationTrace" is-domain="true"
                binding-domain="ReservationTrace">
             <column name="reservation_id" jdbcType="BIGINT" property="reservationId"/>

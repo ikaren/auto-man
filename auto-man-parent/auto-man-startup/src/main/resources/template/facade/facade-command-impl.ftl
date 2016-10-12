@@ -80,7 +80,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
             int result = this.${domain.uncapFirstName}Application.update${domain.simpleName}ById(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
-            response.setMsg("成功更新成功");
+            response.setMsg("更新成功");
         } catch (Throwable e) {
             if ( e instanceof ${projectName.capFirst}Exception) {
                 response.setMsg(e.getMessage());
