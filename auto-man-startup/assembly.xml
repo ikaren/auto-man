@@ -1,5 +1,5 @@
 <assembly>
-    <id>-${project.version}-bin</id>
+    <id>${project.version}-bin</id>
     <baseDirectory>${project.name}-${project.version}</baseDirectory>
     <formats>
         <format>zip</format>
