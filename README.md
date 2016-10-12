@@ -4,7 +4,7 @@ auto man is a tool to generate code. This allows you to build whole DDD-style pr
 
 ### Generated Project Structure
 Auto-Man can generate a Java project built by maven.
-the Java project including 5 modules.
+the Java project includes 5 modules.
 
 ```java
 --foo-parent
@@ -49,7 +49,7 @@ bin file sctructure
 ```
 
 
-* write your project configuration with .xml and put it in /xml. (there has a simple-demo.xml)
+* write your project configuration with .xml and put it in /xml. (there is a simple-demo.xml)
 * run start.sh or start.cmd if you are windows user.
 
 
