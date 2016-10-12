@@ -32,9 +32,9 @@ Quick Start
 two ways for Hello World:
 
 ### download source
-run build.sh or build.cmd if you are windows user, then you can see bin file in `/dist/auto-man-${version}.zip`.
+run `build.sh` or `build.cmd` if you are windows user, then you can see bin file in `/dist/auto-man-${version}.zip`.
 
-tips: running build.* script to build auto-man need to install [Maven](http://maven.apache.org/).
+tips: running `build.*` script to build auto-man need to install [Maven](http://maven.apache.org/).
 ### download bin
 download file in `/dist/auto-man-${version}.zip` and unzip.
 
@@ -54,7 +54,7 @@ bin file structure
 
 
 * write your project configuration with .xml and put it in /xml. (there is a simple-demo.xml)
-* run start.sh or start.cmd if you are windows user.
+* run `start.sh` or `start.cmd` if you are windows user.
 
 
 and then you can see some information and generate process. when everything to be done you'll get your project in the path you specified.
