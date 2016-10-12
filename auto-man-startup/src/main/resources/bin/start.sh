@@ -26,7 +26,7 @@ do
   CLASSPATH="$i:$CLASSPATH"
 done
 
-APPLICATION_MAIN="org.jason.automan.startup.AutoManBoot"
+AUTO_MAN_MAIN="org.jason.automan.startup.AutoManBoot"
 
 echo "Auto-Man Starting ..."
-"$JAVA" -cp "$CLASSPATH" $JVM_OPTS $APPLICATION_MAIN "${PROJECT_XML_HOME}" "${TEMPLATE_HOME}"
+"$JAVA" -cp "$CLASSPATH" ${JVM_OPTS} ${AUTO_MAN_MAIN} "${PROJECT_XML_HOME}" "${TEMPLATE_HOME}"

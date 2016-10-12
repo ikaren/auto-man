@@ -29,13 +29,18 @@ the Java project includes 5 modules.
 
 Quick Start
 =================
-### download source and build
-...
+two way for Hello World:
+
+
+### download source
+run build.sh or build.cmd if you are windows user, then you can see bin file in `/dist/auto-man-${version}.zip`.
+
+tips: running build.* script to build auto-man need to install [Maven](http://maven.apache.org/).
 ### download bin
 download file in `/dist/auto-man-${version}.zip` and unzip.
 
 
-bin file sctructure
+bin file structure
 ```
 --auto-man-${version}
   |-- bin
