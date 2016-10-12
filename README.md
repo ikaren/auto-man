@@ -1,6 +1,6 @@
 Auto-Man
 =================
-auto man is an generate code of tool. This allows you to build whole DDD-style project and only need to write an xml.
+auto man is a tool to generate code. This allows you to build whole DDD-style project and only need to write an xml.
 
 ### Generated Project Structure
 Auto-Man can generate a Java project built by maven.
