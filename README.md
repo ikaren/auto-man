@@ -29,8 +29,7 @@ the Java project includes 5 modules.
 
 Quick Start
 =================
-two way for Hello World:
-
+two ways for Hello World:
 
 ### download source
 run build.sh or build.cmd if you are windows user, then you can see bin file in `/dist/auto-man-${version}.zip`.

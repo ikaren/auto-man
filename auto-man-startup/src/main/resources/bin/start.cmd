@@ -9,5 +9,5 @@ set PROJECT_XML_PATH=%BASE_HOME%\xml
 
 set AUTO_MAN_MAIN=org.jason.automan.startup.AutoManBoot
 
-echo JobTracker [%NODE_NAME%] started
+echo Auto-Man Generate started...
 java -cp "%CLASSPATH%" %JVMFLAGS% %AUTO_MAN_MAIN% %PROJECT_XML_PATH% %TEMPLATE_PATH%
