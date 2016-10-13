@@ -2,6 +2,7 @@ package org.jason.automan;
 
 import org.jason.automan.bean.ProjectName;
 import org.jason.automan.constants.StringConstants;
+import org.jason.automan.template.SkeletonGenerateConfiguration;
 import org.jason.automan.template.TemplateConfig;
 import org.jason.automan.template.TemplateGenerateConfiguration;
 import org.slf4j.Logger;
@@ -112,5 +113,44 @@ public class Processer {
                 }
             }
         }
+    }
+
+    public void generate(SkeletonGenerateConfiguration skeletonKey) {
+        if (null == skeletonKey) {
+            throw new IllegalArgumentException("SkeletonGenerateConfiguration not be null.");
+        }
+
+        StringBuilder sb = new StringBuilder();
+        switch (skeletonKey.fileCategory) {
+            case CODE:
+                sb.append(context.getProjectHome())
+                        .append(context.getProjectLayer())
+                        .append("-")
+                        .append(context.getProjectName())
+                        .append("/")
+                        .append(context.getProjectName())
+                        .append(skeletonKey.modulePath)
+                        .append("/src/main/")
+                        .append(skeletonKey.fileCategory.value)
+                        .append(context.getProjectBase())
+                        .append(skeletonKey.targetFilePath)
+                        .append(skeletonKey.dirName);
+                break;
+            case RESOURCES:
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported File Category: " + skeletonKey.fileCategory);
+        }
+
+        File javaPackage = new File(sb.toString());
+        if (javaPackage.exists()) {
+            return;
+        }
+
+        if (!javaPackage.mkdirs()) {
+            throw new IllegalStateException("Failed to create java package: " + sb.toString());
+        }
+
+        System.out.println("Generate package: " + javaPackage.getName() + " OK! path: " + sb.toString());
     }
 }

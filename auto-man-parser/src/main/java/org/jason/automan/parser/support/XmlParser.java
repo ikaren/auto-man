@@ -7,6 +7,7 @@ import org.jason.automan.bean.*;
 import org.jason.automan.parser.AbstractParser;
 import org.jason.automan.parser.Transporter;
 import org.jason.automan.parser.bean.*;
+import org.jason.automan.template.SkeletonGenerateConfiguration;
 import org.jason.automan.template.TemplateGenerateConfiguration;
 
 import java.util.*;
@@ -28,7 +29,7 @@ public class XmlParser extends AbstractParser {
     }
 
     public void parser(String in, String templatePath) {
-        List<Project> projects = transporter.transport(in,templatePath);
+        List<Project> projects = transporter.transport(in, templatePath);
         for (Project item : projects) {
             Processer processer = processerFactory.createProcesser(new ProcesserContext(item.getProjectName(), item
                     .getProjectDir(), item.getPackageName(), item.getTemplateRoot()));
@@ -48,6 +49,7 @@ public class XmlParser extends AbstractParser {
             generateResourcesFile(processer, domains, item.getPackageName());
             generateDatabaseProps(processer, mapConvertToList(item.getDataSourceConfig().getEnvConfig()));
             generateDubboProps(processer, mapConvertToList(item.getDubboConfig().getEnvConfig()));
+            generateSkeleton(processer);
         }
     }
 
@@ -312,5 +314,10 @@ public class XmlParser extends AbstractParser {
         }
 
         return result;
+    }
+
+    private void generateSkeleton(Processer processer) {
+        processer.generate(SkeletonGenerateConfiguration.CORE_SERVICE);
+        processer.generate(SkeletonGenerateConfiguration.FACADE_IMPL_INTERACTION);
     }
 }

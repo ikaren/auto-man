@@ -12,6 +12,7 @@ the Java project includes 5 modules.
       |- domain  // data entity
       |- exception
       |- repository // operation of data entity or VO
+      |- service // the related operation among entities
       |- vo // is not a domain but is a necessary data object
     |-- foo-infra
       |- repository-impl
@@ -24,6 +25,7 @@ the Java project includes 5 modules.
       |- service-interface  // expose services by Dubbo
     |-- foo-facade-impl
       |- assembler // used to convert between domain and DTO
+      |- interaction // the related operation among Dubbo services
       |- service-interface-impl
 ```
 
@@ -31,17 +33,17 @@ Quick Start
 =================
 two ways for Hello World:
 
-### download source
-run `build.sh` or `build.cmd` if you are windows user, then you can see bin file in `/dist/auto-man-${version}.zip`.
+### download source and build
+run `build.sh` or `build.cmd` if you are windows user, then you can see bin file in `/dist/auto-man-${version}-bin.zip`.
 
 tips: running `build.*` script to build auto-man need to install [Maven](http://maven.apache.org/).
 ### download bin
-download file in `/dist/auto-man-${version}.zip` and unzip.
+download file in `/dist/auto-man-${version}-bin.zip` and unzip.
 
 
 bin file structure
 ```
---auto-man-${version}
+--auto-man-${version}-bin
   |-- bin
     |-- start.sh
   |-- lib
@@ -53,13 +55,13 @@ bin file structure
 ```
 
 
-* write your project configuration with .xml and put it in /xml. (there is a simple-demo.xml)
+* write your project configuration with .xml and put it in /xml. (there is a simple demo)
 * run `start.sh` or `start.cmd` if you are windows user.
 
 
-and then you can see some information and generate process. when everything to be done you'll get your project in the path you specified.
+and then you can see some information and generate process. you'll get your project in the path you specified when everything to be done .
 
-How to Write the configuration
+How to write the configuration
 ===========================
 so easy....see simple-demo.xml and you can know what you want to know. hah
 

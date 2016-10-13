@@ -10,8 +10,7 @@ public enum FileCategory {
     RESOURCES_BETA("resources.beta", 4),
     RESOURCES_ALPHA("resources.alpha", 5),
     RESOURCES_DEV("resources.dev", 6),
-    POM("pom",7);
-
+    POM("pom", 7);
     public String value;
     public int code;
 

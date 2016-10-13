@@ -7,8 +7,8 @@ public enum FileType {
     JAVA(".java", 1),
     XML(".xml", 2),
     PROPERTIES(".properties", 3),
-    SQL(".sql", 4);
-
+    SQL(".sql", 4),
+    DIR("",5);
     public String value;
     public int code;
 
