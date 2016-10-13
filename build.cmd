@@ -4,7 +4,7 @@ start mvn clean install -U -DskipTests
 echo "Auto-Man: mvn clean install -U -DskipTests"
 echo "Auto-Man: After sub window finished, close it , and press any key to continue" & pause>nul
 
-set VERSION=1.1.0-SNAPSHOT
+set VERSION=1.1.1-release
 set BASE_HOME=%~dp0%
 
 set STARTUP_DIR=%BASE_HOME%auto-man-startup
