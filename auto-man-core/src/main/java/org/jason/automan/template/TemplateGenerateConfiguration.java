@@ -69,6 +69,7 @@ public enum TemplateGenerateConfiguration {
             .RESOURCES_DEV),
     LOG4J("facade/log4j.ftl", "-facade-impl", "", FileType.PROPERTIES, FileCategory.RESOURCES),
     ASSEMBLY("facade/assembly.ftl", "-facade-impl", "", FileType.XML, FileCategory.RESOURCES);
+
     public String templateName;
     public String modulePath;
     public String targetFilePath;

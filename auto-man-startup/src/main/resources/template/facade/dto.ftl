@@ -2,14 +2,7 @@ package ${projectBasePackage}.facade.dto;
 
 import com.hans.jhd.infra.themis.service.annotation.ThemisFieldConfig;
 import org.albert.common.domain.CommonEntity;
-<#if vo.properties?exists>
-    <#list vo.properties as property>
-        <#if property.javaType == "Date">
 import java.util.Date;
-            <#break>
-        </#if>
-    </#list>
-</#if>
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
 */
