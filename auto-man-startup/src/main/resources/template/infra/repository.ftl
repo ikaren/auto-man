@@ -1,4 +1,4 @@
-package ${projectBasePackage}.infra;
+package ${projectBasePackage}.infra.repository;
 
 import ${projectBasePackage}.core.repository.I${vo.simpleName}Repository;
 <#if isDomain?string('true','false') == "true">
@@ -6,7 +6,7 @@ import ${projectBasePackage}.core.domain.${vo.simpleName};
 <#else>
 import ${projectBasePackage}.core.vo.${vo.simpleName};
 </#if>
-import ${projectBasePackage}.infra.sql.${vo.simpleName}Mapper;
+import ${projectBasePackage}.infra.repository.sql.${vo.simpleName}Mapper;
 
 import javax.inject.Inject;
 import javax.inject.Named;

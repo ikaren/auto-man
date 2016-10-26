@@ -1,4 +1,4 @@
-package ${projectBasePackage}.infra.sql;
+package ${projectBasePackage}.infra.repository.sql;
 
 <#if isDomain?string('true','false') == "true">
 import ${projectBasePackage}.core.domain.${vo.simpleName};
