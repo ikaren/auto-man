@@ -11,8 +11,8 @@ public enum TemplateGenerateConfiguration {
     VO("core/vo.ftl", "-core", "/core/vo", FileType.JAVA, FileCategory.CODE),
     EXCEPTION("core/exception.ftl", "-core", "/core/exception", FileType.JAVA, FileCategory.CODE),
     REPOSITORY("core/repository.ftl", "-core", "/core/repository", FileType.JAVA, FileCategory.CODE),
-    MAPPER("infra/mapper.ftl", "-infra", "/infra/sql", FileType.JAVA, FileCategory.CODE),
-    REPOSITORY_IMPL("infra/repository.ftl", "-infra", "/infra", FileType.JAVA, FileCategory.CODE),
+    MAPPER("infra/mapper.ftl", "-infra", "/infra/repository/sql", FileType.JAVA, FileCategory.CODE),
+    REPOSITORY_IMPL("infra/repository.ftl", "-infra", "/infra/repository", FileType.JAVA, FileCategory.CODE),
     APPLICATION("application/application-interface.ftl", "-application", "/application", FileType.JAVA,
             FileCategory.CODE),
     APPLICATION_IMPL("application/application.ftl", "-application", "/application/impl", FileType.JAVA, FileCategory

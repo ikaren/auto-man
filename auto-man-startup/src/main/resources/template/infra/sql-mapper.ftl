@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created by Auto-Man v1.0.0 on ${.now}  -->
 ${r'<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >'}
-<mapper namespace="${projectBasePackage}.infra.sql.${vo.simpleName}Mapper">
+<mapper namespace="${projectBasePackage}.infra.repository.sql.${vo.simpleName}Mapper">
     <resultMap id="BASE_RESULT_MAP" type="<#if isDomain?string('true','false') == "true">${projectBasePackage}.core.domain.${vo.simpleName}<#else>${projectBasePackage}.core.vo.${vo.simpleName}</#if>">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <#if vo.properties?exists>

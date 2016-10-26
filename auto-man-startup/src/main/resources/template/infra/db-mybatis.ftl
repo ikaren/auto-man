@@ -9,7 +9,7 @@
     </bean>
 
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="${projectBasePackage}.infra.sql"/>
+        <property name="basePackage" value="${projectBasePackage}.infra.repository.sql"/>
         <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
     </bean>
 
