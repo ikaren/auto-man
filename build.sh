@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="1.1.0-SNAPSHOT"
+VERSION="1.1.1-release"
 
 AUTO_MAN_BIN="${BASH_SOURCE-$0}"
 AUTO_MAN_BIN="$(dirname "${AUTO_MAN_BIN}")"
