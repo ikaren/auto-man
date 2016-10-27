@@ -16,18 +16,18 @@ ${r'<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis
     </resultMap>
 
     <sql id="BASE_COLUMN">
-    id,<#if vo.properties?exists><#list vo.properties as property>${property.tableColumn}<#if property?has_next>,</#if></#list></#if>,others,state,updated_at,created_at
+    id,<#if vo.properties?exists><#list vo.properties as property>`${property.tableColumn}`<#if property?has_next>,</#if></#list></#if>,others,state,updated_at,created_at
     </sql>
     <sql id="INSERT_COLUMN">
-        id,<#if vo.properties?exists><#list vo.properties as property>${property.tableColumn}<#if property?has_next>,</#if></#list></#if>,others
+        id,<#if vo.properties?exists><#list vo.properties as property>`${property.tableColumn}`<#if property?has_next>,</#if></#list></#if>,others
     </sql>
 
     <!-- 插入 -->
-    <insert id="insert${vo.simpleName}Batch" parameterType="<#if isDomain?string('true','false') == "true">${projectBasePackage}.core.domain.${vo.simpleName}<#else>${projectBasePackage}.core.vo.${vo.simpleName}</#if>">
+    <insert id="insert${vo.simpleName}Batch" parameterType="java.util.List">
         INSERT INTO `${vo.tableName}` (<include refid="INSERT_COLUMN"/>)
         VALUES
         <foreach collection="list" index="id" item="item" separator=",">
-        (${r'#{item.id}'},<#if vo.properties?exists><#list vo.properties as property>${r'#{item.'}${property.tableColumn}${r'}'}<#if property?has_next>,</#if></#list></#if>,${r'#{item.others}'})
+        (${r'#{item.id}'},<#if vo.properties?exists><#list vo.properties as property>${r'#{item.'}${property.propertyName}${r'}'}<#if property?has_next>,</#if></#list></#if>,${r'#{item.others}'})
         </foreach>
     </insert>
 
@@ -40,7 +40,7 @@ ${r'<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis
         </foreach>
     </select>
 
-    <update id="update${vo.simpleName}ByIdBatch">
+    <update id="update${vo.simpleName}ByIdBatch" parameterType="java.util.List">
         <foreach collection="list" index="id" item="item" open="(" separator=";" close=")">
             UPDATE `${vo.tableName}`
             SET
