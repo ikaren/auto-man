@@ -67,7 +67,7 @@ public class ${domain.simpleName} extends Entity{
      * @param ${domain.uncapFirstName}Id
      * @return
      */
-    public ${domain.simpleName} select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
+    public List<${domain.simpleName}> select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
         return this.${domain.uncapFirstName}Repository.select${domain.simpleName}ByIdBatch(${domain.uncapFirstName}Id);
     }
 
@@ -113,7 +113,7 @@ public class ${domain.simpleName} extends Entity{
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    public ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
+    public List<${vo.simpleName}> select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
         return this.${vo.uncapFirstName}Repository.select${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
 

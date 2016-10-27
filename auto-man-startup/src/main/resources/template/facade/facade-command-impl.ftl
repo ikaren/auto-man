@@ -21,6 +21,7 @@ import org.slf4j.MDC;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -135,7 +136,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     /**
     * create new ${vo.simpleName}
     *
-    * @param ${vo.uncapFirstName}List
+    * @param ${vo.uncapFirstName}DTOList
     * @return
     */
     @Override
@@ -207,11 +208,11 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
         Response<Integer> response = new Response<>();
         try{
             List<Long> param=new ArrayList<>();
-            for(String item : ${domain.uncapFirstName}Id){
+            for(String item : ${vo.uncapFirstName}Id){
                 param.add(Long.valueOf(item));
             }
 
-            int result = this.${domain.uncapFirstName}Application.delete${vo.simpleName}ByIdBatch(param));
+            int result = this.${domain.uncapFirstName}Application.delete${vo.simpleName}ByIdBatch(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("删除成功");

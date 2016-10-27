@@ -42,5 +42,6 @@ public class AutoManBoot {
             new XmlParser().parser(item, templatePath);
         }
 
+        System.out.println("Auto-Man run completed!");
     }
 }

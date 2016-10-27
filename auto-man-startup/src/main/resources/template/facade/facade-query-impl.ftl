@@ -21,6 +21,8 @@ import org.slf4j.MDC;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
 * Created by Auto-Man v1.0.0 on ${.now}
