@@ -41,7 +41,7 @@ public class ${vo.simpleName}Repository implements I${vo.simpleName}Repository {
      * @return
      */
     @Override
-    public ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
+    public List<${vo.simpleName}> select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
         return this.${vo.uncapFirstName}Mapper.select${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
 

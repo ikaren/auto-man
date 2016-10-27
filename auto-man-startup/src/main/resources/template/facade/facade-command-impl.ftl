@@ -56,7 +56,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[insert${domain.simpleName}Batch] error. param:{], msg:{}, trace:{}",${domain.uncapFirstName}DTOList, e.getMessage(), e.getStackTrace());
+                logger.error("[insert${domain.simpleName}Batch] error. param:{}, msg:{}, trace:{}",${domain.uncapFirstName}DTOList, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }
@@ -74,7 +74,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     @Override
     public Response<Integer> update${domain.simpleName}ByIdBatch(List<${domain.simpleName}DTO> ${domain.uncapFirstName},String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[update${domain.simpleName}ById] request:{}", ${domain.uncapFirstName});
+        logger.debug("[update${domain.simpleName}ByIdBatch] request:{}", ${domain.uncapFirstName});
         Response<Integer> response = new Response<>();
         try{
             List<${domain.simpleName}>  param= ${domain.simpleName}Assembler.dtoToDomainBatch(${domain.uncapFirstName});
@@ -87,7 +87,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[update${domain.simpleName}ById] error. param:{], msg:{}, trace:{}",${domain.uncapFirstName}, e.getMessage(), e.getStackTrace());
+                logger.error("[update${domain.simpleName}ByIdBatch] error. param:{}, msg:{}, trace:{}",${domain.uncapFirstName}, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }
@@ -105,7 +105,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     @Override
     public Response<Integer> delete${domain.simpleName}ByIdBatch(List<String> ${domain.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[delete${domain.simpleName}ById] request:{}", ${domain.uncapFirstName}Id);
+        logger.debug("[delete${domain.simpleName}ByIdBatch] request:{}", ${domain.uncapFirstName}Id);
         Response<Integer> response = new Response<>();
         try{
             List<Long> param=new ArrayList<>();
@@ -122,7 +122,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[delete${domain.simpleName}ById] error. param:{], msg:{}, trace:{}",${domain.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
+                logger.error("[delete${domain.simpleName}ByIdBatch] error. param:{}, msg:{}, trace:{}",${domain.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }
@@ -155,7 +155,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[insert${vo.simpleName}Batch] error. param:{], msg:{}, trace:{}",${vo.uncapFirstName}DTOList, e.getMessage(), e.getStackTrace());
+                logger.error("[insert${vo.simpleName}Batch] error. param:{}, msg:{}, trace:{}",${vo.uncapFirstName}DTOList, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }
@@ -173,7 +173,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     @Override
     public Response<Integer> update${vo.simpleName}ByIdBatch(List<${vo.simpleName}DTO> ${vo.uncapFirstName},String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[update${vo.simpleName}ById] request:{}", ${vo.uncapFirstName});
+        logger.debug("[update${vo.simpleName}ByIdBatch] request:{}", ${vo.uncapFirstName});
         Response<Integer> response = new Response<>();
         try{
             List<${vo.simpleName}> param= ${domain.simpleName}Assembler.${vo.uncapFirstName}DtoToDomainBatch(${vo.uncapFirstName});
@@ -186,7 +186,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[update${vo.simpleName}ById] error. param:{], msg:{}, trace:{}",${vo.uncapFirstName}, e.getMessage(), e.getStackTrace());
+                logger.error("[update${vo.simpleName}ByIdBatch] error. param:{}, msg:{}, trace:{}",${vo.uncapFirstName}, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }
@@ -204,7 +204,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     @Override
     public Response<Integer> delete${vo.simpleName}ByIdBatch(List<String> ${vo.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[delete${vo.simpleName}ById] request:{}", ${vo.uncapFirstName}Id);
+        logger.debug("[delete${vo.simpleName}ByIdBatch] request:{}", ${vo.uncapFirstName}Id);
         Response<Integer> response = new Response<>();
         try{
             List<Long> param=new ArrayList<>();
@@ -221,7 +221,7 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[delete${vo.simpleName}ById] error. param:{], msg:{}, trace:{}",${vo.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
+                logger.error("[delete${vo.simpleName}ByIdBatch] error. param:{}, msg:{}, trace:{}",${vo.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }

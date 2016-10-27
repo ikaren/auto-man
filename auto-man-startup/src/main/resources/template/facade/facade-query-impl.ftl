@@ -41,17 +41,17 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
      * @return
      */
     @Override
-    public Response<${domain.simpleName}DTO> select${domain.simpleName}ByIdBatch(List<String> ${domain.uncapFirstName}Id,String traceId){
+    public Response<List<${domain.simpleName}DTO>> select${domain.simpleName}ByIdBatch(List<String> ${domain.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[select${domain.simpleName}ById] request:{}", ${domain.uncapFirstName}Id);
-        Response<${domain.simpleName}DTO> response = new Response<>();
+        logger.debug("[select${domain.simpleName}ByIdBatch] request:{}", ${domain.uncapFirstName}Id);
+        Response<List<${domain.simpleName}DTO>> response = new Response<>();
         try{
             List<Long> param=new ArrayList<>();
             for(String item : ${domain.uncapFirstName}Id){
                 param.add(Long.valueOf(item));
             }
 
-            List<${domain.simpleName}> ${domain.uncapFirstName} = this.${domain.uncapFirstName}Application.select${domain.simpleName}ByIdBatch(param));
+            List<${domain.simpleName}> ${domain.uncapFirstName} = this.${domain.uncapFirstName}Application.select${domain.simpleName}ByIdBatch(param);
             List<${domain.simpleName}DTO> result = ${domain.simpleName}Assembler.domainToDtoBatch(${domain.uncapFirstName});
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
@@ -61,7 +61,7 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[select${domain.simpleName}ById] error. param:{], msg:{}, trace:{}",${domain.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
+                logger.error("[select${domain.simpleName}ByIdBatch] error. param:{}, msg:{}, trace:{}",${domain.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }
@@ -79,17 +79,17 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
      * @return
      */
     @Override
-    public Response<${vo.simpleName}DTO> select${vo.simpleName}ByIdBatch(List<String> ${vo.uncapFirstName}Id,String traceId){
+    public Response<List<${vo.simpleName}DTO>> select${vo.simpleName}ByIdBatch(List<String> ${vo.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
-        logger.debug("[select${vo.simpleName}ById] request:{}", ${vo.uncapFirstName}Id);
-        Response<${vo.simpleName}DTO> response = new Response<>();
+        logger.debug("[select${vo.simpleName}ByIdBatch] request:{}", ${vo.uncapFirstName}Id);
+        Response<List<${vo.simpleName}DTO>> response = new Response<>();
         try{
             List<Long> param=new ArrayList<>();
-            for(String item : ${domain.uncapFirstName}Id){
+            for(String item : ${vo.uncapFirstName}Id){
                 param.add(Long.valueOf(item));
             }
 
-            List<${vo.simpleName}> ${vo.uncapFirstName} = this.${domain.uncapFirstName}Application.select${vo.simpleName}ByIdBatch(param));
+            List<${vo.simpleName}> ${vo.uncapFirstName} = this.${domain.uncapFirstName}Application.select${vo.simpleName}ByIdBatch(param);
             List<${vo.simpleName}DTO> result = ${domain.simpleName}Assembler.${vo.uncapFirstName}DomainToDtoBatch(${vo.uncapFirstName});
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
@@ -99,7 +99,7 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
                 response.setMsg(e.getMessage());
                 response.setCode(ResponseCode.FAIL);
             } else {
-                logger.error("[select${vo.simpleName}ById] error. param:{], msg:{}, trace:{}",${vo.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
+                logger.error("[select${vo.simpleName}ByIdBatch] error. param:{}, msg:{}, trace:{}",${vo.uncapFirstName}Id, e.getMessage(), e.getStackTrace());
                 response.setMsg("服务异常");
                 response.setCode(ResponseCode.EXCEPTION);
             }

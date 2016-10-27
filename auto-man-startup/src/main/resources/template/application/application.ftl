@@ -37,7 +37,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int insert${domain.simpleName}Batch(List<${domain.simpleName}> ${domain.uncapFirstName}List) {
-        if (null == ${domain.uncapFirstName}List) {
+        if (null == ${domain.uncapFirstName}List || 0 == ${domain.uncapFirstName}List.size()) {
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -56,8 +56,8 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public ${domain.simpleName} select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
-        if(0L==${domain.uncapFirstName}Id){
+    public List<${domain.simpleName}> select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
+        if(null == ${domain.uncapFirstName}Id || 0 == ${domain.uncapFirstName}Id.size()){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -73,7 +73,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int update${domain.simpleName}ByIdBatch(List<${domain.simpleName}> ${domain.uncapFirstName}){
-        if(null==${domain.uncapFirstName}){
+        if(null == ${domain.uncapFirstName} || 0 == ${domain.uncapFirstName}.size()){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -89,7 +89,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int delete${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
-        if(0L==${domain.uncapFirstName}Id){
+        if(null == ${domain.uncapFirstName}Id || 0 == ${domain.uncapFirstName}Id.size()){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -107,7 +107,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int insert${vo.simpleName}Batch(List<${vo.simpleName}> ${vo.uncapFirstName}List){
-        if (null == ${vo.uncapFirstName}List) {
+        if (null == ${vo.uncapFirstName}List || 0 == ${vo.uncapFirstName}List.size()) {
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -126,8 +126,8 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
-        if(0L==${vo.uncapFirstName}Id){
+    public List<${vo.simpleName}> select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
+        if(null == ${vo.uncapFirstName}Id || 0 == ${vo.uncapFirstName}Id.size()){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -143,7 +143,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int update${vo.simpleName}ByIdBatch(List<${vo.simpleName}> ${vo.uncapFirstName}){
-        if(null==${vo.uncapFirstName}){
+        if(null == ${vo.uncapFirstName} || 0 == ${vo.uncapFirstName}.size()){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
@@ -159,7 +159,7 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      */
     @Override
     public int delete${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
-        if(0L==${vo.uncapFirstName}Id){
+        if(null == ${vo.uncapFirstName}Id || 0 == ${vo.uncapFirstName}Id.size()){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 

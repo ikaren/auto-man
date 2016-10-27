@@ -28,7 +28,7 @@ public interface I${domain.simpleName}Application {
      * @param ${domain.uncapFirstName}Id
      * @return
      */
-    ${domain.simpleName} select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id);
+    List<${domain.simpleName}> select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id);
 
     <#-- Update -->
     /**
@@ -66,7 +66,7 @@ public interface I${domain.simpleName}Application {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id);
+    List<${vo.simpleName}> select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id);
 
     <#-- Update -->
     /**
