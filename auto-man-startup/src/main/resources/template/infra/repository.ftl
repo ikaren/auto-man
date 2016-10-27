@@ -41,8 +41,8 @@ public class ${vo.simpleName}Repository implements I${vo.simpleName}Repository {
      * @return
      */
     @Override
-    public ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
-        return this.${vo.uncapFirstName}Mapper.select${vo.simpleName}ById(${vo.uncapFirstName}Id);
+    public ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
+        return this.${vo.uncapFirstName}Mapper.select${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
 
     <#-- Update -->
@@ -53,8 +53,8 @@ public class ${vo.simpleName}Repository implements I${vo.simpleName}Repository {
      * @return
      */
     @Override
-    public int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName}){
-        return this.${vo.uncapFirstName}Mapper.update${vo.simpleName}ById(${vo.uncapFirstName});
+    public int update${vo.simpleName}ByIdBatch(List<${vo.simpleName}> ${vo.uncapFirstName}){
+        return this.${vo.uncapFirstName}Mapper.update${vo.simpleName}ByIdBatch(${vo.uncapFirstName});
     }
 
     <#-- Delete -->
@@ -65,7 +65,7 @@ public class ${vo.simpleName}Repository implements I${vo.simpleName}Repository {
      * @return
      */
     @Override
-    public int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
-        return this.${vo.uncapFirstName}Mapper.delete${vo.simpleName}ById(${vo.uncapFirstName}Id);
+    public int delete${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
+        return this.${vo.uncapFirstName}Mapper.delete${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
 }

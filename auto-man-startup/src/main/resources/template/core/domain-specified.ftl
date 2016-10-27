@@ -67,8 +67,8 @@ public class ${domain.simpleName} extends Entity{
      * @param ${domain.uncapFirstName}Id
      * @return
      */
-    public ${domain.simpleName} select${domain.simpleName}ById(long ${domain.uncapFirstName}Id){
-        return this.${domain.uncapFirstName}Repository.select${domain.simpleName}ById(${domain.uncapFirstName}Id);
+    public ${domain.simpleName} select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
+        return this.${domain.uncapFirstName}Repository.select${domain.simpleName}ByIdBatch(${domain.uncapFirstName}Id);
     }
 
     <#-- Update -->
@@ -78,8 +78,8 @@ public class ${domain.simpleName} extends Entity{
      * @param ${domain.uncapFirstName}
      * @return
      */
-    public int update${domain.simpleName}ById(${domain.simpleName} ${domain.uncapFirstName}){
-        return this.${domain.uncapFirstName}Repository.update${domain.simpleName}ById(${domain.uncapFirstName});
+    public int update${domain.simpleName}ByIdBatch(List<${domain.simpleName}> ${domain.uncapFirstName}){
+        return this.${domain.uncapFirstName}Repository.update${domain.simpleName}ByIdBatch(${domain.uncapFirstName});
     }
 
     <#-- Delete -->
@@ -89,8 +89,8 @@ public class ${domain.simpleName} extends Entity{
      * @param ${domain.uncapFirstName}Id
      * @return
      */
-    public int delete${domain.simpleName}ById(long ${domain.uncapFirstName}Id){
-        return this.${domain.uncapFirstName}Repository.delete${domain.simpleName}ById(${domain.uncapFirstName}Id);
+    public int delete${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
+        return this.${domain.uncapFirstName}Repository.delete${domain.simpleName}ByIdBatch(${domain.uncapFirstName}Id);
     }
 
 <#if domain.bindingVOs?exists>
@@ -113,8 +113,8 @@ public class ${domain.simpleName} extends Entity{
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    public ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
-        return this.${vo.uncapFirstName}Repository.select${vo.simpleName}ById(${vo.uncapFirstName}Id);
+    public ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
+        return this.${vo.uncapFirstName}Repository.select${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
 
     <#-- Update -->
@@ -124,8 +124,8 @@ public class ${domain.simpleName} extends Entity{
      * @param ${vo.uncapFirstName}
      * @return
      */
-    public int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName}){
-        return this.${vo.uncapFirstName}Repository.update${vo.simpleName}ById(${vo.uncapFirstName});
+    public int update${vo.simpleName}ByIdBatch(List<${vo.simpleName}> ${vo.uncapFirstName}){
+        return this.${vo.uncapFirstName}Repository.update${vo.simpleName}ByIdBatch(${vo.uncapFirstName});
     }
 
     <#-- Delete -->
@@ -135,8 +135,8 @@ public class ${domain.simpleName} extends Entity{
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    public int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
-        return this.${vo.uncapFirstName}Repository.delete${vo.simpleName}ById(${vo.uncapFirstName}Id);
+    public int delete${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
+        return this.${vo.uncapFirstName}Repository.delete${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
 </#list>
 </#if>

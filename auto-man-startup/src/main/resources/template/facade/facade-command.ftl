@@ -51,7 +51,7 @@ public interface I${domain.simpleName}CommandFacade {
     method = HttpMethod.POST,
     returnType = Integer.class,
     description = "根据id更新<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>")
-    Response<Integer> update${domain.simpleName}ById(@ThemisArgConfig(argName = "${domain.uncapFirstName}", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>") ${domain.simpleName}DTO ${domain.uncapFirstName},String traceId);
+    Response<Integer> update${domain.simpleName}ById(@ThemisArgConfig(argName = "${domain.uncapFirstName}", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>数组") List<${domain.simpleName}DTO> ${domain.uncapFirstName},String traceId);
 
     /**
       * delete ${domain.simpleName} by id
@@ -64,7 +64,7 @@ public interface I${domain.simpleName}CommandFacade {
         method = HttpMethod.DELETE,
         returnType = Integer.class,
         description = "根据id删除<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>")
-    Response<Integer> delete${domain.simpleName}ById(@ThemisArgConfig(argName = "${domain.uncapFirstName}Id", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>") String ${domain.uncapFirstName}Id,String traceId);
+    Response<Integer> delete${domain.simpleName}ById(@ThemisArgConfig(argName = "${domain.uncapFirstName}Id", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>数组") List<String> ${domain.uncapFirstName}Id,String traceId);
 
 <#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
@@ -79,7 +79,7 @@ public interface I${domain.simpleName}CommandFacade {
     method = HttpMethod.PUT,
     returnType = Integer.class,
     description = "批量添加<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>")
-    Response<Integer> insert${vo.simpleName}Batch(@ThemisArgConfig(argName = "${vo.uncapFirstName}List", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>") List<${vo.simpleName}DTO> ${vo.uncapFirstName}List,String traceId);
+    Response<Integer> insert${vo.simpleName}Batch(@ThemisArgConfig(argName = "${vo.uncapFirstName}List", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>数组") List<${vo.simpleName}DTO> ${vo.uncapFirstName}List,String traceId);
 
     /**
      * update ${vo.simpleName} by id
@@ -92,7 +92,7 @@ public interface I${domain.simpleName}CommandFacade {
     method = HttpMethod.POST,
     returnType = Integer.class,
     description = "根据id更新<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>")
-    Response<Integer> update${vo.simpleName}ById(@ThemisArgConfig(argName = "${vo.uncapFirstName}", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>") ${vo.simpleName}DTO ${vo.uncapFirstName},String traceId);
+    Response<Integer> update${vo.simpleName}ByIdBatch(@ThemisArgConfig(argName = "${vo.uncapFirstName}", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>数组") List<${vo.simpleName}DTO> ${vo.uncapFirstName},String traceId);
 
     /**
      * delete ${vo.simpleName} by id
@@ -105,7 +105,7 @@ public interface I${domain.simpleName}CommandFacade {
     method = HttpMethod.DELETE,
     returnType = Integer.class,
     description = "根据id删除<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>")
-    Response<Integer> delete${vo.simpleName}ById(@ThemisArgConfig(argName = "${vo.uncapFirstName}Id", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>") String ${vo.uncapFirstName}Id,String traceId);
+    Response<Integer> delete${vo.simpleName}ByIdBatch(@ThemisArgConfig(argName = "${vo.uncapFirstName}Id", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>数组") List<String> ${vo.uncapFirstName}Id,String traceId);
 </#list>
 </#if>
 }

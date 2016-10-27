@@ -28,7 +28,7 @@ public interface I${domain.simpleName}Application {
      * @param ${domain.uncapFirstName}Id
      * @return
      */
-    ${domain.simpleName} select${domain.simpleName}ById(long ${domain.uncapFirstName}Id);
+    ${domain.simpleName} select${domain.simpleName}ById(List<Long> ${domain.uncapFirstName}Id);
 
     <#-- Update -->
     /**
@@ -37,7 +37,7 @@ public interface I${domain.simpleName}Application {
      * @param ${domain.uncapFirstName}
      * @return
      */
-    int update${domain.simpleName}ById(${domain.simpleName} ${domain.uncapFirstName});
+    int update${domain.simpleName}ById(List<${domain.simpleName}> ${domain.uncapFirstName});
 
     <#-- Delete -->
     /**
@@ -46,7 +46,7 @@ public interface I${domain.simpleName}Application {
      * @param ${domain.uncapFirstName}Id
      * @return
      */
-    int delete${domain.simpleName}ById(long ${domain.uncapFirstName}Id);
+    int delete${domain.simpleName}ById(List<Long> ${domain.uncapFirstName}Id);
 
 <#if domain.bindingVOs?exists>
     <#list domain.bindingVOs as vo>
@@ -66,7 +66,7 @@ public interface I${domain.simpleName}Application {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
+    ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id);
 
     <#-- Update -->
     /**
@@ -75,7 +75,7 @@ public interface I${domain.simpleName}Application {
      * @param ${vo.uncapFirstName}
      * @return
      */
-    int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName});
+    int update${vo.simpleName}ByIdBatch(List<${vo.simpleName}> ${vo.uncapFirstName});
 
     <#-- Delete -->
     /**
@@ -84,7 +84,7 @@ public interface I${domain.simpleName}Application {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
+    int delete${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id);
     </#list>
 </#if>
 }

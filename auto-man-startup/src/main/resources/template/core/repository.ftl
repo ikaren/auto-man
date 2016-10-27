@@ -29,7 +29,7 @@ public interface I${vo.simpleName}Repository {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
+    List<${vo.simpleName}> select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id);
 
     <#-- Update -->
     /**
@@ -38,7 +38,7 @@ public interface I${vo.simpleName}Repository {
      * @param ${vo.uncapFirstName}
      * @return
      */
-    int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName});
+    int update${vo.simpleName}ByIdBatch(List<${vo.simpleName}> ${vo.uncapFirstName});
 
     <#-- Delete -->
     /**
@@ -47,5 +47,5 @@ public interface I${vo.simpleName}Repository {
      * @param ${vo.uncapFirstName}Id
      * @return
      */
-    int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id);
+    int delete${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id);
 }

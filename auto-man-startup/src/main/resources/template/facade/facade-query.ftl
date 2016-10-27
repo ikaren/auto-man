@@ -39,7 +39,7 @@ public interface I${domain.simpleName}QueryFacade {
         method = HttpMethod.GET,
         returnType = ${domain.simpleName}DTO.class,
         description = "通过id查询<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if>")
-    Response<${domain.simpleName}DTO> select${domain.simpleName}ById(@ThemisArgConfig(argName = "${domain.uncapFirstName}Id", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if> id") String ${domain.uncapFirstName}Id,String traceId);
+    Response<${domain.simpleName}DTO> select${domain.simpleName}ByIdBatch(@ThemisArgConfig(argName = "${domain.uncapFirstName}Id", desc = "<#if domain.desc?has_content>${domain.desc}<#else>${domain.simpleName}</#if> id 数组") List<String> ${domain.uncapFirstName}Id,String traceId);
 
 <#if domain.bindingVOs?exists>
 <#list domain.bindingVOs as vo>
@@ -54,7 +54,7 @@ public interface I${domain.simpleName}QueryFacade {
         method = HttpMethod.GET,
         returnType = ${vo.simpleName}DTO.class,
         description = "通过id查询<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if>")
-    Response<${vo.simpleName}DTO> select${vo.simpleName}ById(@ThemisArgConfig(argName = "${vo.uncapFirstName}Id", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if> id") String ${vo.uncapFirstName}Id,String traceId);
+    Response<${vo.simpleName}DTO> select${vo.simpleName}ByIdBatch(@ThemisArgConfig(argName = "${vo.uncapFirstName}Id", desc = "<#if vo.desc?has_content>${vo.desc}<#else>${vo.simpleName}</#if> id 数组") List<String> ${vo.uncapFirstName}Id,String traceId);
 </#list>
 </#if>
 }

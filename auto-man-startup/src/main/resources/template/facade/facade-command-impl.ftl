@@ -71,13 +71,13 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    public Response<Integer> update${domain.simpleName}ById(${domain.simpleName}DTO ${domain.uncapFirstName},String traceId){
+    public Response<Integer> update${domain.simpleName}ByIdBatch(List<${domain.simpleName}DTO> ${domain.uncapFirstName},String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[update${domain.simpleName}ById] request:{}", ${domain.uncapFirstName});
         Response<Integer> response = new Response<>();
         try{
-            ${domain.simpleName}  param= ${domain.simpleName}Assembler.dtoToDomain(${domain.uncapFirstName});
-            int result = this.${domain.uncapFirstName}Application.update${domain.simpleName}ById(param);
+            List<${domain.simpleName}>  param= ${domain.simpleName}Assembler.dtoToDomainBatch(${domain.uncapFirstName});
+            int result = this.${domain.uncapFirstName}Application.update${domain.simpleName}ByIdBatch(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("更新成功");
@@ -102,12 +102,17 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    public Response<Integer> delete${domain.simpleName}ById(String ${domain.uncapFirstName}Id,String traceId){
+    public Response<Integer> delete${domain.simpleName}ByIdBatch(List<String> ${domain.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[delete${domain.simpleName}ById] request:{}", ${domain.uncapFirstName}Id);
         Response<Integer> response = new Response<>();
         try{
-            int result = this.${domain.uncapFirstName}Application.delete${domain.simpleName}ById(Long.valueOf(${domain.uncapFirstName}Id));
+            List<Long> param=new ArrayList<>();
+            for(String item : ${domain.uncapFirstName}Id){
+                param.add(Long.valueOf(item));
+            }
+
+            int result = this.${domain.uncapFirstName}Application.delete${domain.simpleName}ByIdBatch(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("删除成功");
@@ -165,13 +170,13 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    public Response<Integer> update${vo.simpleName}ById(${vo.simpleName}DTO ${vo.uncapFirstName},String traceId){
+    public Response<Integer> update${vo.simpleName}ByIdBatch(List<${vo.simpleName}DTO> ${vo.uncapFirstName},String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[update${vo.simpleName}ById] request:{}", ${vo.uncapFirstName});
         Response<Integer> response = new Response<>();
         try{
-            ${vo.simpleName}  param= ${domain.simpleName}Assembler.${vo.uncapFirstName}DtoToDomain(${vo.uncapFirstName});
-            int result = this.${domain.uncapFirstName}Application.update${vo.simpleName}ById(param);
+            List<${vo.simpleName}> param= ${domain.simpleName}Assembler.${vo.uncapFirstName}DtoToDomainBatch(${vo.uncapFirstName});
+            int result = this.${domain.uncapFirstName}Application.update${vo.simpleName}ByIdBatch(param);
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("成功更新成功");
@@ -196,12 +201,17 @@ public class ${domain.simpleName}CommandFacade implements I${domain.simpleName}C
     * @return
     */
     @Override
-    public Response<Integer> delete${vo.simpleName}ById(String ${vo.uncapFirstName}Id,String traceId){
+    public Response<Integer> delete${vo.simpleName}ByIdBatch(List<String> ${vo.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[delete${vo.simpleName}ById] request:{}", ${vo.uncapFirstName}Id);
         Response<Integer> response = new Response<>();
         try{
-            int result = this.${domain.uncapFirstName}Application.delete${vo.simpleName}ById(Long.valueOf(${vo.uncapFirstName}Id));
+            List<Long> param=new ArrayList<>();
+            for(String item : ${domain.uncapFirstName}Id){
+                param.add(Long.valueOf(item));
+            }
+
+            int result = this.${domain.uncapFirstName}Application.delete${vo.simpleName}ByIdBatch(param));
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("删除成功");

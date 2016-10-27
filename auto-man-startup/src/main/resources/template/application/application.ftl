@@ -56,12 +56,12 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public ${domain.simpleName} select${domain.simpleName}ById(long ${domain.uncapFirstName}Id){
+    public ${domain.simpleName} select${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
         if(0L==${domain.uncapFirstName}Id){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
-        return this.${domain.uncapFirstName}.select${domain.simpleName}ById(${domain.uncapFirstName}Id);
+        return this.${domain.uncapFirstName}.select${domain.simpleName}ByIdBatch(${domain.uncapFirstName}Id);
     }
 
     <#-- Update -->
@@ -72,12 +72,12 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public int update${domain.simpleName}ById(${domain.simpleName} ${domain.uncapFirstName}){
+    public int update${domain.simpleName}ByIdBatch(List<${domain.simpleName}> ${domain.uncapFirstName}){
         if(null==${domain.uncapFirstName}){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
-        return this.${domain.uncapFirstName}.update${domain.simpleName}ById(${domain.uncapFirstName});
+        return this.${domain.uncapFirstName}.update${domain.simpleName}ByIdBatch(${domain.uncapFirstName});
     }
 
     <#-- Delete -->
@@ -88,12 +88,12 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public int delete${domain.simpleName}ById(long ${domain.uncapFirstName}Id){
+    public int delete${domain.simpleName}ByIdBatch(List<Long> ${domain.uncapFirstName}Id){
         if(0L==${domain.uncapFirstName}Id){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
-        return this.${domain.uncapFirstName}.delete${domain.simpleName}ById(${domain.uncapFirstName}Id);
+        return this.${domain.uncapFirstName}.delete${domain.simpleName}ByIdBatch(${domain.uncapFirstName}Id);
     }
 
 <#if domain.bindingVOs?exists>
@@ -126,12 +126,12 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public ${vo.simpleName} select${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
+    public ${vo.simpleName} select${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
         if(0L==${vo.uncapFirstName}Id){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
-        return this.${domain.uncapFirstName}.select${vo.simpleName}ById(${vo.uncapFirstName}Id);
+        return this.${domain.uncapFirstName}.select${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
 
     <#-- Update -->
@@ -142,12 +142,12 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public int update${vo.simpleName}ById(${vo.simpleName} ${vo.uncapFirstName}){
+    public int update${vo.simpleName}ByIdBatch(List<${vo.simpleName}> ${vo.uncapFirstName}){
         if(null==${vo.uncapFirstName}){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
-        return this.${domain.uncapFirstName}.update${vo.simpleName}ById(${vo.uncapFirstName});
+        return this.${domain.uncapFirstName}.update${vo.simpleName}ByIdBatch(${vo.uncapFirstName});
     }
 
     <#-- Delete -->
@@ -158,12 +158,12 @@ public class ${domain.simpleName}Application implements I${domain.simpleName}App
      * @return
      */
     @Override
-    public int delete${vo.simpleName}ById(long ${vo.uncapFirstName}Id){
+    public int delete${vo.simpleName}ByIdBatch(List<Long> ${vo.uncapFirstName}Id){
         if(0L==${vo.uncapFirstName}Id){
             throw new ${projectName.capFirst}Exception("参数不能为空.");
         }
 
-        return this.${domain.uncapFirstName}.delete${vo.simpleName}ById(${vo.uncapFirstName}Id);
+        return this.${domain.uncapFirstName}.delete${vo.simpleName}ByIdBatch(${vo.uncapFirstName}Id);
     }
     </#list>
 </#if>

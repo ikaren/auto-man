@@ -31,30 +31,38 @@ ${r'<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis
         </foreach>
     </insert>
 
-    <select id="select${vo.simpleName}ById" resultMap="BASE_RESULT_MAP">
+    <select id="select${vo.simpleName}ByIdBatch" resultMap="BASE_RESULT_MAP">
         SELECT
         <include refid="BASE_COLUMN"/>
-        FROM `${vo.tableName}` WHERE state=1 AND id = ${r'#{id}'}
+        FROM `${vo.tableName}` WHERE state=1 AND id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            ${r'#{item}'}
+        </foreach>
     </select>
 
-    <update id="update${vo.simpleName}ById">
-        UPDATE `${vo.tableName}`
-        SET
-        <trim suffix="" suffixOverrides=",">
-        <#if vo.properties?exists>
-        <#list vo.properties as property>
-        <if test="${property.propertyName}!=null">
-        ${property.tableColumn} = ${r'#{'}${property.propertyName}${r'}'},
-        </if>
-        </#list>
-        </#if>
-        </trim>
-        WHERE state = 1 AND id = ${r'#{id}'} LIMIT 1
+    <update id="update${vo.simpleName}ByIdBatch">
+        <foreach collection="list" index="id" item="item" open="(" separator=";" close=")">
+            UPDATE `${vo.tableName}`
+            SET
+            <trim suffix="" suffixOverrides=",">
+            <#if vo.properties?exists>
+                <#list vo.properties as property>
+                    <if test="item.${property.propertyName}!=null">
+                    ${property.tableColumn} = ${r'#{'}item.${property.propertyName}${r'}'},
+                    </if>
+                </#list>
+            </#if>
+            </trim>
+            WHERE state = 1 AND id = ${r'#{item.id}'} LIMIT 1
+        </foreach>
     </update>
 
-    <update id="delete${vo.simpleName}ById">
+    <update id="delete${vo.simpleName}ByIdBatch">
         UPDATE `${vo.tableName}`
         SET state = 0
-        WHERE state = 1 AND id = ${r'#{id}'} LIMIT 1
+        WHERE state = 1 AND id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+        ${r'#{item}'}
+        </foreach>
     </update>
 </mapper>

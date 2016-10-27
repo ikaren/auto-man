@@ -39,13 +39,18 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
      * @return
      */
     @Override
-    public Response<${domain.simpleName}DTO> select${domain.simpleName}ById(String ${domain.uncapFirstName}Id,String traceId){
+    public Response<${domain.simpleName}DTO> select${domain.simpleName}ByIdBatch(List<String> ${domain.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[select${domain.simpleName}ById] request:{}", ${domain.uncapFirstName}Id);
         Response<${domain.simpleName}DTO> response = new Response<>();
         try{
-            ${domain.simpleName} ${domain.uncapFirstName} = this.${domain.uncapFirstName}Application.select${domain.simpleName}ById(Long.valueOf(${domain.uncapFirstName}Id));
-            ${domain.simpleName}DTO result = ${domain.simpleName}Assembler.domainToDto(${domain.uncapFirstName});
+            List<Long> param=new ArrayList<>();
+            for(String item : ${domain.uncapFirstName}Id){
+                param.add(Long.valueOf(item));
+            }
+
+            List<${domain.simpleName}> ${domain.uncapFirstName} = this.${domain.uncapFirstName}Application.select${domain.simpleName}ByIdBatch(param));
+            List<${domain.simpleName}DTO> result = ${domain.simpleName}Assembler.domainToDtoBatch(${domain.uncapFirstName});
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("查询成功");
@@ -72,13 +77,18 @@ public class ${domain.simpleName}QueryFacade implements I${domain.simpleName}Que
      * @return
      */
     @Override
-    public Response<${vo.simpleName}DTO> select${vo.simpleName}ById(String ${vo.uncapFirstName}Id,String traceId){
+    public Response<${vo.simpleName}DTO> select${vo.simpleName}ByIdBatch(List<String> ${vo.uncapFirstName}Id,String traceId){
         MDC.put(ConstString.TRACE_ID, traceId);
         logger.debug("[select${vo.simpleName}ById] request:{}", ${vo.uncapFirstName}Id);
         Response<${vo.simpleName}DTO> response = new Response<>();
         try{
-            ${vo.simpleName} ${vo.uncapFirstName} = this.${domain.uncapFirstName}Application.select${vo.simpleName}ById(Long.valueOf(${vo.uncapFirstName}Id));
-            ${vo.simpleName}DTO result = ${domain.simpleName}Assembler.${vo.uncapFirstName}DomainToDto(${vo.uncapFirstName});
+            List<Long> param=new ArrayList<>();
+            for(String item : ${domain.uncapFirstName}Id){
+                param.add(Long.valueOf(item));
+            }
+
+            List<${vo.simpleName}> ${vo.uncapFirstName} = this.${domain.uncapFirstName}Application.select${vo.simpleName}ByIdBatch(param));
+            List<${vo.simpleName}DTO> result = ${domain.simpleName}Assembler.${vo.uncapFirstName}DomainToDtoBatch(${vo.uncapFirstName});
             response.setCode(ResponseCode.SUCCESS);
             response.setData(result);
             response.setMsg("查询成功");
