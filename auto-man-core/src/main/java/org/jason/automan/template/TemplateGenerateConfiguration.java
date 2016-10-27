@@ -68,7 +68,7 @@ public enum TemplateGenerateConfiguration {
     DEV_DUBBO_PROPERTIES("facade/dubbo-properties.ftl", "-facade-impl", "/props", FileType.PROPERTIES, FileCategory
             .RESOURCES_DEV),
     LOG4J("facade/log4j.ftl", "-facade-impl", "", FileType.PROPERTIES, FileCategory.RESOURCES),
-    ASSEMBLY("facade/assembly.ftl", "-facade-impl", "", FileType.XML, FileCategory.RESOURCES);
+    ASSEMBLY("facade/assembly.ftl", "-facade-impl", "", FileType.XML, FileCategory.POM);
 
     public String templateName;
     public String modulePath;
