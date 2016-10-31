@@ -8,4 +8,5 @@
     <context:property-placeholder location="classpath*:props/*.properties" ignore-unresolvable="true"/>
 
     <import resource="classpath*:/spring/facade-impl-context.xml"/>
+    <import resource="classpath*:/dubbo/dubbo.xml"/>
 </beans>
