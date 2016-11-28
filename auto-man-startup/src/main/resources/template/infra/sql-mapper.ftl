@@ -41,7 +41,7 @@ ${r'<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis
     </select>
 
     <update id="update${vo.simpleName}ByIdBatch" parameterType="java.util.List">
-        <foreach collection="list" index="id" item="item" open="(" separator=";" close=")">
+        <foreach collection="list" index="id" item="item" separator=";">
             UPDATE `${vo.tableName}`
             SET
             <trim suffix="" suffixOverrides=",">
