@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.hans.jhd.common.pom</groupId>
         <artifactId>common-pom</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
 
     </parent>
 
