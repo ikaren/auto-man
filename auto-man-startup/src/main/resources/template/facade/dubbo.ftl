@@ -9,7 +9,7 @@
 
     <!-- Created by Auto-Man v1.0.0 on ${.now}  -->
 
-    <dubbo:application id="${projectName.uncapFirst}DubboApplication" name="${projectLayer}-${projectName.uncapFirst}" owner="Auto-Man" organization="hans.jhd"/>
+    <dubbo:application id="${projectName.uncapFirst}DubboApplication" name="${projectLayer}-${projectName.uncapFirst}" owner="Auto-Man" organization="AutoMan"/>
 
     <dubbo:protocol name="dubbo" port="${r'${dubbo.protocol.port}'}" threads="10" queues="30"/>
 
