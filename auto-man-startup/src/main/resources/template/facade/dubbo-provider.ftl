@@ -28,7 +28,7 @@
         timeout="50000"
         registry="${projectName.uncapFirst}Registry">
     </dubbo:service>
-    <bean id="${domain.uncapFirstName}CommandFacade" class="${projectBasePackage}.facade.impl.${domain.simpleName}QueryFacade"/>
+    <bean id="${domain.uncapFirstName}QueryFacade" class="${projectBasePackage}.facade.impl.${domain.simpleName}QueryFacade"/>
     </#list>
     </#if>
 </beans>
