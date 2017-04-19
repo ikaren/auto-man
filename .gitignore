@@ -31,3 +31,6 @@ Thumbs.db
 
 #rebel
 rebel.xml
+
+#idea plugin out
+classes/
