@@ -1,5 +1,6 @@
 package org.jason.automan.startup;
 
+import org.jason.automan.ProgressListener;
 import org.jason.automan.parser.support.XmlParser;
 
 import java.io.File;
@@ -43,5 +44,26 @@ public class AutoManBoot {
         }
 
         System.out.println("Auto-Man run completed!");
+    }
+
+    public static void createNewProject(String targetPath, String configFile, String templatePath, ProgressListener
+            listener) {
+        File targetDir = new File(targetPath);
+        if (!targetDir.isDirectory() || !targetDir.exists()) {
+            listener.update("TargetPath Not Exists or Not Directory");
+            return;
+        }
+
+        if (null == configFile || configFile.length() == 0) {
+            throw new IllegalStateException("configFile not be null");
+        }
+
+        if (!configFile.endsWith(".xml")) {
+            listener.update("ConfigFile expect .xml file");
+            return;
+        }
+
+        new XmlParser().parser(configFile,templatePath, targetPath, listener);
+        listener.update("completed!");
     }
 }

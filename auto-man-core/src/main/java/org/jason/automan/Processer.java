@@ -21,8 +21,10 @@ public class Processer {
     private static final Logger logger = LoggerFactory.getLogger(Processer.class);
     private ProcesserContext context;
     private TemplateManager templateManager;
+    private ProgressListener listener;
 
-    public Processer(ProcesserContext context) {
+    public Processer(ProcesserContext context, ProgressListener listener) {
+        this.listener = listener;
         this.context = context;
         templateManager = new TemplateManager(new TemplateConfig(context.getTemplateRepository(), false));
     }
@@ -101,7 +103,12 @@ public class Processer {
             writer = new FileWriter(new File(dirSb.toString(), fileName + templateKey.fileType.value));
             templateManager.getTemplate(templateKey.templateName).process(root, writer);
             writer.flush();
-            System.out.println("Generate file: " + fileName + " OK! path: " + dirSb);
+            String comment = "Generate file: " + fileName + " OK! path: " + dirSb;
+            if (null == listener) {
+                System.out.println(comment);
+            } else {
+                listener.update(comment);
+            }
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         } finally {
@@ -151,6 +158,11 @@ public class Processer {
             throw new IllegalStateException("Failed to create java package: " + sb.toString());
         }
 
-        System.out.println("Generate package: " + javaPackage.getName() + " OK! path: " + sb.toString());
+        String comment = "Generate package: " + javaPackage.getName() + " OK! path: " + sb.toString();
+        if (null == listener) {
+            System.out.println(comment);
+        } else {
+            listener.update(comment);
+        }
     }
 }

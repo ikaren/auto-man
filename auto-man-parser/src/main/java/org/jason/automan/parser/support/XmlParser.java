@@ -3,6 +3,7 @@ package org.jason.automan.parser.support;
 import org.jason.automan.Processer;
 import org.jason.automan.ProcesserContext;
 import org.jason.automan.ProcesserFactory;
+import org.jason.automan.ProgressListener;
 import org.jason.automan.bean.*;
 import org.jason.automan.parser.AbstractParser;
 import org.jason.automan.parser.Transporter;
@@ -18,6 +19,7 @@ import java.util.*;
 public class XmlParser extends AbstractParser {
     private Transporter transporter;
     private ProcesserFactory processerFactory;
+    private ProgressListener listener;
 
     public XmlParser() {
         init();
@@ -29,28 +31,57 @@ public class XmlParser extends AbstractParser {
     }
 
     public void parser(String in, String templatePath) {
+        parser(in, templatePath, null, null);
+    }
+
+    public void parser(String in, String templatePath, String projectDir, ProgressListener listener) {
+        this.listener = listener;
         List<Project> projects = transporter.transport(in, templatePath);
+        if (null != projectDir && projectDir.length() != 0) {
+            for (Project item : projects) {
+                item.setProjectDir(projectDir);
+            }
+        }
+
         for (Project item : projects) {
+            double projectWeight = 1.0 / projects.size();
             Processer processer = processerFactory.createProcesser(new ProcesserContext(item.getProjectName(), item
-                    .getProjectDir(), item.getPackageName(), item.getTemplateRoot()));
+                    .getProjectDir(), item.getPackageName(), item.getTemplateRoot()), listener);
 
             List<Domain> domains = getDomains(item.getTables());
-            processer.generate(TemplateGenerateConfiguration.EXCEPTION, buildCodeRootMap(TemplateGenerateConfiguration
-                    .EXCEPTION, null), item.getProjectName().substring(0, 1).toUpperCase() + item.getProjectName()
+            processer.generate(TemplateGenerateConfiguration.EXCEPTION, buildCodeRootMap
+                    (TemplateGenerateConfiguration
+                            .EXCEPTION, null), item.getProjectName().substring(0, 1).toUpperCase() + item
+                    .getProjectName()
                     .substring(1) + "Exception");
             processer.generate(TemplateGenerateConfiguration.RESPONSE_CODE, buildCodeRootMap
                     (TemplateGenerateConfiguration
                             .RESPONSE_CODE, null), "ResponseCode");
+            updateProgress(projectWeight * ProgressWeight.INITIAL);
             for (Domain domain : domains) {
                 generateCodeFile(domain, processer);
+                updateProgress(projectWeight * (1.0 / domains.size()) * ProgressWeight.DOMAIN);
             }
 
             generatePomFile(processer);
+            updateProgress(projectWeight * ProgressWeight.POM);
             generateResourcesFile(processer, domains, item.getPackageName());
+            updateProgress(projectWeight * ProgressWeight.RESOURCES_FILE);
             generateDatabaseProps(processer, mapConvertToList(item.getDataSourceConfig().getEnvConfig()));
+            updateProgress(projectWeight * ProgressWeight.DATABASE_PROPS);
             generateDubboProps(processer, mapConvertToList(item.getDubboConfig().getEnvConfig()));
+            updateProgress(projectWeight * ProgressWeight.DUBBO_PROPS);
             generateSkeleton(processer);
+            updateProgress(projectWeight * ProgressWeight.SKELETON);
         }
+    }
+
+    private void updateProgress(double increase) {
+        if (null == listener) {
+            return;
+        }
+
+        listener.update(increase);
     }
 
     private void generateCodeFile(Domain domain, Processer processer) {

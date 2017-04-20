@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  * Created by Jason.Xia on 17/4/18.
@@ -22,14 +23,23 @@ public class SettingUI {
 
     public SettingUI(ConfigBean configBean) {
         this.configBean = configBean;
+        this.targetPathTxt.setText(configBean.getTargetPath());
         this.selectBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Messages.showMessageDialog("clicked this button", "title", Messages.getInformationIcon());
+                JFileChooser fileChooser = new JFileChooser(SettingUI.this.getTargetPathTxt().getText());
+                fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+                fileChooser.showDialog(new JLabel(), "choose");
+                File file = fileChooser.getSelectedFile();
+                if (!file.isDirectory()) {
+                    Messages.showMessageDialog("selected not a directory", "error", Messages.getErrorIcon());
+                    return;
+                }
+
+                SettingUI.this.getTargetPathTxt().setText(file.getAbsolutePath());
             }
         });
     }
-
 
     public JTextField getTargetPathTxt() {
         return targetPathTxt;
@@ -70,7 +80,7 @@ public class SettingUI {
         panelMain.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         targetPathTxt = new JTextField();
-        targetPathTxt.setText("");
+        targetPathTxt.setText("....");
         panelMain.add(targetPathTxt, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints
                 .FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new
                 Dimension(150, -1), null, 0, false));

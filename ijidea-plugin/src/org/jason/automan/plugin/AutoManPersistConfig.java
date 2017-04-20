@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 @State(name = "autoManPersistConfig", storages = {@Storage(file = "autoManPersistConfig.xml")})
 public class AutoManPersistConfig implements PersistentStateComponent<AutoManPersistConfig> {
     private String targetPath;
+    private String lastSelectedConfigFilePath;
 
     public static AutoManPersistConfig getInstance() {
         return ServiceManager.getService(AutoManPersistConfig.class);
@@ -35,5 +36,13 @@ public class AutoManPersistConfig implements PersistentStateComponent<AutoManPer
 
     public void setTargetPath(String targetPath) {
         this.targetPath = targetPath;
+    }
+
+    public String getLastSelectedConfigFilePath() {
+        return lastSelectedConfigFilePath;
+    }
+
+    public void setLastSelectedConfigFilePath(String lastSelectedConfigFilePath) {
+        this.lastSelectedConfigFilePath = lastSelectedConfigFilePath;
     }
 }

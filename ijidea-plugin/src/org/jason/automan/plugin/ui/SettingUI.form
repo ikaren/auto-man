@@ -23,7 +23,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value=""/>
+          <text value="...."/>
         </properties>
       </component>
       <vspacer id="7e78">

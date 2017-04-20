@@ -2,15 +2,16 @@ package org.jason.automan.plugin.action;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.ui.Messages;
+import org.jason.automan.plugin.ui.MainUI;
 
 /**
  * Created by Jason.Xia on 17/4/18.
  */
-public class ProjectAutoMan extends AnAction {
+public class MainAction extends AnAction {
+
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        Messages.showMessageDialog("test clicked", "test title", Messages.getInformationIcon());
+        MainUI.main(null);
     }
 }

@@ -20,18 +20,6 @@ public class AutoManConfigurable implements Configurable {
         this.autoManPersistConfig = AutoManPersistConfig.getInstance();
     }
 
-//    @NotNull
-//    @Override
-//    public String getId() {
-//        return "automan.setting";
-//    }
-//
-//    @Nullable
-//    @Override
-//    public Runnable enableSearch(String s) {
-//        return null;
-//    }
-
     @Nls
     @Override
     public String getDisplayName() {
@@ -51,12 +39,12 @@ public class AutoManConfigurable implements Configurable {
 
         String targetPath = autoManPersistConfig.getTargetPath();
         if (null == targetPath) {
-            targetPath = "~/AutoManProject/";
+            targetPath = "/";
         }
 
         configBean.setTargetPath(targetPath);
         settingUI = new SettingUI(configBean);
-        return settingUI.getRootComponentWithInit();
+        return settingUI.$$$getRootComponent$$$();
     }
 
     @Override
@@ -66,14 +54,14 @@ public class AutoManConfigurable implements Configurable {
 
     @Override
     public void apply() throws ConfigurationException {
-//        ConfigBean configBean = new ConfigBean();
-//        configBean.setTargetPath(this.settingUI.getTargetPathTxt().getText());
         autoManPersistConfig.setTargetPath(this.settingUI.getTargetPathTxt().getText());
     }
 
     @Override
     public void reset() {
-        settingUI.getTargetPathTxt().setText("~/AutoManProject/");
+        if (!autoManPersistConfig.getTargetPath().equals(settingUI.getTargetPathTxt().getText())) {
+            settingUI.getTargetPathTxt().setText(autoManPersistConfig.getTargetPath());
+        }
     }
 
     @Override

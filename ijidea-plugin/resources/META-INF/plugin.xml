@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
     <id>org.jason.automan.plugin</id>
     <name>auto-man</name>
     <version>1.0</version>
@@ -26,7 +26,7 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="projectAutoMan" class="org.jason.automan.plugin.action.ProjectAutoMan" text="Auto-Man"
+        <action id="mainAction" class="org.jason.automan.plugin.action.MainAction" text="Auto-Man"
                 description="generate project code">
             <add-to-group group-id="WindowMenu" anchor="first"/>
         </action>
