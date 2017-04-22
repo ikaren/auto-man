@@ -5,13 +5,11 @@
     <vendor email="xiayuqing123@hotmail.com" url="https://github.com/xiayuqing/auto-man">Auto-Man</vendor>
 
     <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      auto man is a tool to generate code. This allows you to build whole DDD-style project and only need to write an xml.<br>
     ]]></description>
 
     <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      Idea Plugin 1.0.<br>
     ]]>
     </change-notes>
 

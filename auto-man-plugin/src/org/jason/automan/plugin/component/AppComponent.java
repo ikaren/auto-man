@@ -4,7 +4,7 @@ import com.intellij.openapi.components.ApplicationComponent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Created by Jason.Xia on 17/4/18.
+ * Created by Jason.Xia on 17/4/23.
  */
 public class AppComponent implements ApplicationComponent {
     public AppComponent() {
@@ -23,8 +23,6 @@ public class AppComponent implements ApplicationComponent {
     @Override
     @NotNull
     public String getComponentName() {
-        return "HomeComponent";
+        return "AppComponent";
     }
-
-
 }
