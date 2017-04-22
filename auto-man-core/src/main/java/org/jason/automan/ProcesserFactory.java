@@ -9,7 +9,8 @@ import java.util.concurrent.ConcurrentMap;
 public class ProcesserFactory {
     private ConcurrentMap<String/*projectName*/, Processer> processerConcurrentMap = new ConcurrentHashMap<>();
 
-    public Processer createProcesser(ProcesserContext processerContext, ProgressListener listener) {
+    public Processer createProcesser(boolean isNewProject, ProcesserContext processerContext, ProgressListener
+            listener) {
         if (null == processerContext || null == processerContext.getProjectName() || 0 == processerContext
                 .getProjectName().length()) {
             throw new IllegalArgumentException("ProcesserContext not be null.");
@@ -19,8 +20,8 @@ public class ProcesserFactory {
             return processerConcurrentMap.get(processerContext.getProjectName());
         }
 
-        processerConcurrentMap.putIfAbsent(processerContext.getProjectName(), new Processer(processerContext,
-                listener));
+        processerConcurrentMap.putIfAbsent(processerContext.getProjectName(), new Processer(isNewProject,
+                processerContext, listener));
         return processerConcurrentMap.get(processerContext.getProjectName());
     }
 }

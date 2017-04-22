@@ -30,6 +30,29 @@ public class XmlParser extends AbstractParser {
         processerFactory = new ProcesserFactory();
     }
 
+    public void addNewDomainOrVO(String in, String templatePath, String projectDir, String projectName,
+                                 ProgressListener listener) {
+        this.listener = listener;
+        List<Project> transport = transporter.transport(in, templatePath);
+        if (1 != transport.size()) {
+            if (null != listener) {
+                listener.update("add new domain allow only one project tag");
+                return;
+            }
+
+            throw new IllegalArgumentException("add new domain allow only one project tag");
+        }
+
+        Project project = transport.get(0);
+        project.setProjectDir(projectDir);
+        Processer processer = this.processerFactory.createProcesser(false, new ProcesserContext(projectName, projectDir,
+                project.getPackageName(), templatePath), listener);
+        List<Domain> domains = getDomains(project.getTables());
+        for (Domain item : domains) {
+            generateCodeFile(item, processer);
+        }
+    }
+
     public void parser(String in, String templatePath) {
         parser(in, templatePath, null, null);
     }
@@ -45,8 +68,8 @@ public class XmlParser extends AbstractParser {
 
         for (Project item : projects) {
             double projectWeight = 1.0 / projects.size();
-            Processer processer = processerFactory.createProcesser(new ProcesserContext(item.getProjectName(), item
-                    .getProjectDir(), item.getPackageName(), item.getTemplateRoot()), listener);
+            Processer processer = processerFactory.createProcesser(true, new ProcesserContext(item.getProjectName(),
+                    item.getProjectDir(), item.getPackageName(), item.getTemplateRoot()), listener);
 
             List<Domain> domains = getDomains(item.getTables());
             processer.generate(TemplateGenerateConfiguration.EXCEPTION, buildCodeRootMap

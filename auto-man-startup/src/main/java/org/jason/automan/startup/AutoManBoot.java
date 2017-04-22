@@ -1,11 +1,13 @@
 package org.jason.automan.startup;
 
 import org.jason.automan.ProgressListener;
+import org.jason.automan.parser.ActionParams;
 import org.jason.automan.parser.support.XmlParser;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jason.Xia on 16/10/7.
@@ -46,7 +48,7 @@ public class AutoManBoot {
         System.out.println("Auto-Man run completed!");
     }
 
-    public static void createNewProject(String targetPath, String configFile, String templatePath, ProgressListener
+    private static void createNewProject(String configFile, String templatePath, String targetPath, ProgressListener
             listener) {
         File targetDir = new File(targetPath);
         if (!targetDir.isDirectory() || !targetDir.exists()) {
@@ -63,7 +65,33 @@ public class AutoManBoot {
             return;
         }
 
-        new XmlParser().parser(configFile,templatePath, targetPath, listener);
-        listener.update("completed!");
+        new XmlParser().parser(configFile, templatePath, targetPath, listener);
+        if (null != listener) {
+            listener.update("completed!");
+        }
+    }
+
+    private static void createNewDomain(String in, String templatePath, String projectDir, String projectName,
+                                        ProgressListener listener) {
+        new XmlParser().addNewDomainOrVO(in, templatePath, projectDir, projectName, listener);
+        if (null != listener) {
+            listener.update("completed!");
+        }
+    }
+
+    public static void create(ActionParams.Action action, ActionParams params) {
+        switch (action) {
+            case CREATE_PROJECT:
+                ActionParams.validate(params);
+                createNewProject(params.getConfigFile(), params.getTemplatePath(), params.getTargetPath(), params
+                        .getListener());
+                break;
+            case ADD_NEW_DOMAIN:
+                ActionParams.validate(params);
+                Map<String, String> extra = params.getExtra();
+                createNewDomain(params.getConfigFile(), params.getTemplatePath(), params.getTargetPath(), extra.get
+                        ("projectName"), params.getListener());
+                break;
+        }
     }
 }

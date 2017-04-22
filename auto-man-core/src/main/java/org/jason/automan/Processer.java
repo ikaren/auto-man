@@ -19,11 +19,13 @@ import java.util.Map;
  */
 public class Processer {
     private static final Logger logger = LoggerFactory.getLogger(Processer.class);
+    private final boolean isNewProject;
     private ProcesserContext context;
     private TemplateManager templateManager;
     private ProgressListener listener;
 
-    public Processer(ProcesserContext context, ProgressListener listener) {
+    public Processer(boolean isNewProject, ProcesserContext context, ProgressListener listener) {
+        this.isNewProject = isNewProject;
         this.listener = listener;
         this.context = context;
         templateManager = new TemplateManager(new TemplateConfig(context.getTemplateRepository(), false));
@@ -50,12 +52,15 @@ public class Processer {
         StringBuilder dirSb = new StringBuilder();
         switch (templateKey.fileCategory) {
             case CODE:
-                dirSb.append(context.getProjectHome())
-                        .append(context.getProjectLayer())
-                        .append("-")
-                        .append(context.getProjectName())
-                        .append("/")
-                        .append(context.getProjectName())
+                dirSb.append(context.getProjectHome());
+                if (isNewProject) {
+                    dirSb.append(context.getProjectLayer())
+                            .append("-")
+                            .append(context.getProjectName())
+                            .append("/");
+                }
+
+                dirSb.append(context.getProjectName())
                         .append(templateKey.modulePath)
                         .append("/src/main/")
                         .append(templateKey.fileCategory.value)
@@ -63,10 +68,13 @@ public class Processer {
                         .append(templateKey.targetFilePath);
                 break;
             case POM:
-                dirSb.append(context.getProjectHome())
-                        .append(context.getProjectLayer())
-                        .append("-")
-                        .append(context.getProjectName());
+                dirSb.append(context.getProjectHome());
+                if (isNewProject) {
+                    dirSb.append(context.getProjectLayer())
+                            .append("-")
+                            .append(context.getProjectName());
+                }
+
                 if (!"".equals(templateKey.modulePath)) {
                     dirSb.append("/")
                             .append(context.getProjectName())
@@ -78,12 +86,15 @@ public class Processer {
             case RESOURCES_ALPHA:
             case RESOURCES_DEV:
             case RESOURCES:
-                dirSb.append(context.getProjectHome())
-                        .append(context.getProjectLayer())
-                        .append("-")
-                        .append(context.getProjectName())
-                        .append("/")
-                        .append(context.getProjectName())
+                dirSb.append(context.getProjectHome());
+                if (isNewProject) {
+                    dirSb.append(context.getProjectLayer())
+                            .append("-")
+                            .append(context.getProjectName())
+                            .append("/");
+                }
+
+                dirSb.append(context.getProjectName())
                         .append(templateKey.modulePath)
                         .append("/src/main/")
                         .append(templateKey.fileCategory.value)
@@ -130,12 +141,15 @@ public class Processer {
         StringBuilder sb = new StringBuilder();
         switch (skeletonKey.fileCategory) {
             case CODE:
-                sb.append(context.getProjectHome())
-                        .append(context.getProjectLayer())
-                        .append("-")
-                        .append(context.getProjectName())
-                        .append("/")
-                        .append(context.getProjectName())
+                sb.append(context.getProjectHome());
+                if (isNewProject) {
+                    sb.append(context.getProjectLayer())
+                            .append("-")
+                            .append(context.getProjectName())
+                            .append("/");
+                }
+
+                sb.append(context.getProjectName())
                         .append(skeletonKey.modulePath)
                         .append("/src/main/")
                         .append(skeletonKey.fileCategory.value)
