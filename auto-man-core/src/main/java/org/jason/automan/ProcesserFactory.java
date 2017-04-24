@@ -21,7 +21,7 @@ public class ProcesserFactory {
         }
 
         processerConcurrentMap.putIfAbsent(processerContext.getProjectName(), new Processer(isNewProject,
-                processerContext, listener));
+                processerContext, listener, processerContext.isSupportIdeaPlugin()));
         return processerConcurrentMap.get(processerContext.getProjectName());
     }
 }

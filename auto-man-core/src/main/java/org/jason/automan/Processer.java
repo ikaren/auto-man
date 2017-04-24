@@ -24,11 +24,17 @@ public class Processer {
     private TemplateManager templateManager;
     private ProgressListener listener;
 
-    public Processer(boolean isNewProject, ProcesserContext context, ProgressListener listener) {
+    public Processer(boolean isNewProject, ProcesserContext context, ProgressListener listener, boolean
+            supportIdeaPlugin) {
         this.isNewProject = isNewProject;
         this.listener = listener;
         this.context = context;
-        templateManager = new TemplateManager(new TemplateConfig(context.getTemplateRepository(), false));
+        templateManager = new TemplateManager(new TemplateConfig(context.getTemplateRepository(), false,
+                supportIdeaPlugin));
+    }
+
+    public Processer(boolean isNewProject, ProcesserContext context, ProgressListener listener) {
+        this(isNewProject, context, listener, false);
     }
 
     public void generate(TemplateGenerateConfiguration templateKey, Map<String, Object> root, String fileName) {

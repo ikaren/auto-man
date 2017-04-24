@@ -59,6 +59,10 @@ public class AutoManConfigurable implements Configurable {
 
     @Override
     public void reset() {
+        if (null == autoManPersistConfig.getTargetPath()) {
+            return;
+        }
+
         if (!autoManPersistConfig.getTargetPath().equals(settingUI.getTargetPathTxt().getText())) {
             settingUI.getTargetPathTxt().setText(autoManPersistConfig.getTargetPath());
         }

@@ -7,7 +7,6 @@ import org.jason.automan.constants.StringConstants;
 import org.jason.automan.template.TemplateConfig;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -25,7 +24,28 @@ public class TemplateManager {
     public TemplateManager(TemplateConfig config) {
         this.templateConfig = config;
         this.templateFileDir = config.getTemplateFileDir();
-        init();
+        if (config.isSupportIdeaijPlugin()) {
+            supportPluginInit();
+        } else {
+            init();
+        }
+    }
+
+    protected void supportPluginInit() {
+        if (null == configuration) {
+            synchronized (this) {
+                if (null == configuration) {
+                    configuration = new Configuration(FreeMarkerVersion.getVersion());
+                }
+            }
+        }
+
+        configuration.setClassForTemplateLoading(TemplateManager.class, this.templateFileDir);
+
+        configuration.setObjectWrapper(new DefaultObjectWrapperBuilder(FreeMarkerVersion.getVersion()).build());
+//        if (!templateConfig.isLazyLoadTemplate()) {
+//            initTemplate();
+//        }
     }
 
     protected void init() {

@@ -49,7 +49,7 @@ public class AutoManBoot {
     }
 
     private static void createNewProject(String configFile, String templatePath, String targetPath, ProgressListener
-            listener) {
+            listener, boolean supportPlugin) {
         File targetDir = new File(targetPath);
         if (!targetDir.isDirectory() || !targetDir.exists()) {
             listener.update("TargetPath Not Exists or Not Directory");
@@ -65,15 +65,15 @@ public class AutoManBoot {
             return;
         }
 
-        new XmlParser().parser(configFile, templatePath, targetPath, listener);
+        new XmlParser().parser(configFile, templatePath, targetPath, listener, supportPlugin);
         if (null != listener) {
             listener.update("completed!");
         }
     }
 
     private static void createNewDomain(String in, String templatePath, String projectDir, String projectName,
-                                        ProgressListener listener) {
-        new XmlParser().addNewDomainOrVO(in, templatePath, projectDir, projectName, listener);
+                                        ProgressListener listener, boolean supportPlugin) {
+        new XmlParser().addNewDomainOrVO(in, templatePath, projectDir, projectName, listener, supportPlugin);
         if (null != listener) {
             listener.update("completed!");
         }
@@ -84,13 +84,13 @@ public class AutoManBoot {
             case CREATE_PROJECT:
                 ActionParams.validate(params);
                 createNewProject(params.getConfigFile(), params.getTemplatePath(), params.getTargetPath(), params
-                        .getListener());
+                        .getListener(), true);
                 break;
             case ADD_NEW_DOMAIN:
                 ActionParams.validate(params);
                 Map<String, String> extra = params.getExtra();
                 createNewDomain(params.getConfigFile(), params.getTemplatePath(), params.getTargetPath(), extra.get
-                        ("projectName"), params.getListener());
+                        ("projectName"), params.getListener(), true);
                 break;
         }
     }

@@ -13,9 +13,16 @@ public class TemplateConfig {
      */
     private boolean lazyLoadTemplate;
 
+    private boolean supportIdeaijPlugin = false;
+
     public TemplateConfig(String templateFileDir, boolean lazyLoadTemplate) {
+        this(templateFileDir, lazyLoadTemplate, false);
+    }
+
+    public TemplateConfig(String templateFileDir, boolean lazyLoadTemplate, boolean supportIdeaijPlugin) {
         this.templateFileDir = templateFileDir;
         this.lazyLoadTemplate = lazyLoadTemplate;
+        this.supportIdeaijPlugin = supportIdeaijPlugin;
     }
 
     public String getTemplateFileDir() {
@@ -32,5 +39,13 @@ public class TemplateConfig {
 
     public void setLazyLoadTemplate(boolean lazyLoadTemplate) {
         this.lazyLoadTemplate = lazyLoadTemplate;
+    }
+
+    public boolean isSupportIdeaijPlugin() {
+        return supportIdeaijPlugin;
+    }
+
+    public void setSupportIdeaijPlugin(boolean supportIdeaijPlugin) {
+        this.supportIdeaijPlugin = supportIdeaijPlugin;
     }
 }

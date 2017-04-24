@@ -29,12 +29,14 @@ public class ProcesserContext {
      */
     private String templateRepository;
 
+    private boolean supportIdeaPlugin;
+
     private transient String projectLayer;
 
     private Map<String, String> extra = new HashMap<>();
 
     public ProcesserContext(String projectName, String projectHome, String basePackage, String projectBase, String
-            templateRepository) {
+            templateRepository, boolean supportIdeaPlugin) {
         this.projectName = projectName;
         this.projectHome = projectHome;
 
@@ -51,14 +53,20 @@ public class ProcesserContext {
         }
 
         this.templateRepository = templateRepository;
+        this.supportIdeaPlugin = supportIdeaPlugin;
     }
 
     public ProcesserContext(String projectName, String projectHome, String basePackage) {
-        this(projectName, projectHome, basePackage, null, null);
+        this(projectName, projectHome, basePackage, null, null, false);
     }
 
     public ProcesserContext(String projectName, String projectHome, String basePackage, String templateRepository) {
-        this(projectName, projectHome, basePackage, null, templateRepository);
+        this(projectName, projectHome, basePackage, null, templateRepository, false);
+    }
+
+    public ProcesserContext(String projectName, String projectHome, String basePackage, String templateRepository,
+                            boolean supportIdeaPlugin) {
+        this(projectName, projectHome, basePackage, null, templateRepository, supportIdeaPlugin);
     }
 
     public String getProjectName() {
@@ -115,5 +123,13 @@ public class ProcesserContext {
 
     public void setProjectLayer(String projectLayer) {
         this.projectLayer = projectLayer;
+    }
+
+    public boolean isSupportIdeaPlugin() {
+        return supportIdeaPlugin;
+    }
+
+    public void setSupportIdeaPlugin(boolean supportIdeaPlugin) {
+        this.supportIdeaPlugin = supportIdeaPlugin;
     }
 }

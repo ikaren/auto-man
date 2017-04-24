@@ -1,11 +1,14 @@
 package org.jason.automan.plugin.ui;
 
 
+import com.intellij.compiler.server.BuildManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.intellij.util.PathUtil;
+import org.apache.commons.lang.StringUtils;
 import org.jason.automan.ProgressListener;
 import org.jason.automan.parser.ActionParams;
 import org.jason.automan.plugin.AutoManPersistConfig;
@@ -15,7 +18,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,6 +99,11 @@ public class MainUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 File selected = openFileChooser(new File(MainUI.this.targetPathTxt.getText()));
+                if (null == selected) {
+                    Messages.showMessageDialog("you should select a directory", "error", Messages.getErrorIcon());
+                    return;
+                }
+
                 if (!selected.isDirectory()) {
                     Messages.showMessageDialog("selected not a directory", "error", Messages.getErrorIcon());
                     return;
@@ -110,6 +117,11 @@ public class MainUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 File selected = openFileChooser(new File(MainUI.this.configFileTxt.getText()));
+                if (null == selected) {
+                    Messages.showMessageDialog("you should select a .xml file", "error", Messages.getErrorIcon());
+                    return;
+                }
+
                 if (!selected.getAbsolutePath().endsWith(".xml")) {
                     Messages.showMessageDialog("expect .xml file", "error", Messages.getErrorIcon());
                     return;
@@ -123,6 +135,11 @@ public class MainUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 File selected = openFileChooser(new File(MainUI.this.tableConfigPathTxt.getText()));
+                if (null == selected) {
+                    Messages.showMessageDialog("you should select a .xml file", "error", Messages.getErrorIcon());
+                    return;
+                }
+
                 if (!selected.getAbsolutePath().endsWith(".xml")) {
                     Messages.showMessageDialog("expect .xml file", "error", Messages.getErrorIcon());
                     return;
@@ -150,23 +167,54 @@ public class MainUI extends JDialog {
 
     private void createNew() {
         start(0);
-        URL resPath = this.getClass().getResource("/template");
-        ActionParams params = new ActionParams(this.targetPathTxt.getText() + "/", this.configFileTxt.getText()
-                , resPath.getFile(), new AutoManProgressListener(this.progressBar1, this.progressingTxtArea));
-        AutoManBoot.create(ActionParams.Action.CREATE_PROJECT, params);
-        this.autoManPersistConfig.setLastSelectedConfigFilePath(this.configFileTxt.getText());
+        String jarPathForClass = PathUtil.getJarPathForClass(this.getClass());
+        String resPath;
+        if (jarPathForClass.endsWith(".jar")) { // production
+            BuildManager instance = BuildManager.getInstance();
+            resPath = "/template";
+        } else { //debug
+            resPath = this.getClass().getResource("/template").getPath();
+        }
+
+        if (StringUtils.isEmpty(this.targetPathTxt.getText()) || StringUtils.isEmpty(this.configFileTxt.getText())) {
+            Messages.showMessageDialog("Current Project and Table Config Not Be Null", "error", Messages.getErrorIcon
+                    ());
+        } else {
+            this.progressingTxtArea.append(resPath + "\n");
+            String target = "/".equals(this.targetPathTxt.getText()) ? "/" : this.targetPathTxt.getText() + "/";
+            ActionParams params = new ActionParams(target, this.configFileTxt.getText(), resPath, new
+                    AutoManProgressListener(this.progressBar1, this.progressingTxtArea));
+            AutoManBoot.create(ActionParams.Action.CREATE_PROJECT, params);
+            this.autoManPersistConfig.setLastSelectedConfigFilePath(this.configFileTxt.getText());
+        }
+
         completed(0);
     }
 
     private void addTable() {
         start(1);
-        URL resPath = this.getClass().getResource("/template");
-        ActionParams params = new ActionParams(this.curProjectPathTxt.getText() + "/", this.tableConfigPathTxt.getText()
-                , resPath.getFile(), new AutoManProgressListener(null, this.addTbaleProgressTxt));
-        Map<String, String> extra = new HashMap<>();
-        extra.put("projectName", this.projectNameTxt.getText());
-        params.setExtra(extra);
-        AutoManBoot.create(ActionParams.Action.ADD_NEW_DOMAIN, params);
+        String jarPathForClass = PathUtil.getJarPathForClass(this.getClass());
+        String resPath;
+        if (jarPathForClass.endsWith(".jar")) { // production
+            BuildManager instance = BuildManager.getInstance();
+            resPath = "/template";
+        } else { //debug
+            resPath = this.getClass().getResource("/template").getPath();
+        }
+
+        if (StringUtils.isEmpty(this.curProjectPathTxt.getText()) || StringUtils.isEmpty(this.tableConfigPathTxt
+                .getText())) {
+            Messages.showMessageDialog("Current Project and Table Config Not Be Null", "error", Messages.getErrorIcon
+                    ());
+        } else {
+            ActionParams params = new ActionParams(this.curProjectPathTxt.getText() + "/", this.tableConfigPathTxt
+                    .getText(), resPath, new AutoManProgressListener(null, this.addTbaleProgressTxt));
+            Map<String, String> extra = new HashMap<>();
+            extra.put("projectName", this.projectNameTxt.getText());
+            params.setExtra(extra);
+            AutoManBoot.create(ActionParams.Action.ADD_NEW_DOMAIN, params);
+        }
+
         completed(1);
     }
 
@@ -355,6 +403,7 @@ public class MainUI extends JDialog {
         panel6.add(label4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE,
                 GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         tableConfigPathTxt = new JTextField();
+        tableConfigPathTxt.setText("");
         panel6.add(tableConfigPathTxt, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints
                 .FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new
                 Dimension(150, -1), null, 0, false));

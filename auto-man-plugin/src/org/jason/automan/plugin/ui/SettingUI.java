@@ -31,6 +31,11 @@ public class SettingUI {
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                 fileChooser.showDialog(new JLabel(), "choose");
                 File file = fileChooser.getSelectedFile();
+                if (null == file) {
+                    Messages.showMessageDialog("you should select a directory", "error", Messages.getErrorIcon());
+                    return;
+                }
+
                 if (!file.isDirectory()) {
                     Messages.showMessageDialog("selected not a directory", "error", Messages.getErrorIcon());
                     return;

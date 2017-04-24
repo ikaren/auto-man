@@ -31,7 +31,7 @@ public class XmlParser extends AbstractParser {
     }
 
     public void addNewDomainOrVO(String in, String templatePath, String projectDir, String projectName,
-                                 ProgressListener listener) {
+                                 ProgressListener listener, boolean supportPlugin) {
         this.listener = listener;
         List<Project> transport = transporter.transport(in, templatePath);
         if (1 != transport.size()) {
@@ -46,7 +46,7 @@ public class XmlParser extends AbstractParser {
         Project project = transport.get(0);
         project.setProjectDir(projectDir);
         Processer processer = this.processerFactory.createProcesser(false, new ProcesserContext(projectName, projectDir,
-                project.getPackageName(), templatePath), listener);
+                project.getPackageName(), templatePath, supportPlugin), listener);
         List<Domain> domains = getDomains(project.getTables());
         for (Domain item : domains) {
             generateCodeFile(item, processer);
@@ -54,10 +54,11 @@ public class XmlParser extends AbstractParser {
     }
 
     public void parser(String in, String templatePath) {
-        parser(in, templatePath, null, null);
+        parser(in, templatePath, null, null, false);
     }
 
-    public void parser(String in, String templatePath, String projectDir, ProgressListener listener) {
+    public void parser(String in, String templatePath, String projectDir, ProgressListener listener, boolean
+            supportPlugin) {
         this.listener = listener;
         List<Project> projects = transporter.transport(in, templatePath);
         if (null != projectDir && projectDir.length() != 0) {
@@ -69,7 +70,7 @@ public class XmlParser extends AbstractParser {
         for (Project item : projects) {
             double projectWeight = 1.0 / projects.size();
             Processer processer = processerFactory.createProcesser(true, new ProcesserContext(item.getProjectName(),
-                    item.getProjectDir(), item.getPackageName(), item.getTemplateRoot()), listener);
+                    item.getProjectDir(), item.getPackageName(), item.getTemplateRoot(), supportPlugin), listener);
 
             List<Domain> domains = getDomains(item.getTables());
             processer.generate(TemplateGenerateConfiguration.EXCEPTION, buildCodeRootMap
