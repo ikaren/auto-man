@@ -13,7 +13,6 @@ import java.awt.*;
  */
 public class MainAction extends AnAction {
 
-
     @Override
     public void actionPerformed(AnActionEvent e) {
 

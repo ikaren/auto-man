@@ -2,6 +2,7 @@ package org.jason.automan.plugin.ui;
 
 
 import com.intellij.compiler.server.BuildManager;
+import com.intellij.ide.ui.EditorOptionsTopHitProvider;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.uiDesigner.core.GridConstraints;
@@ -54,6 +55,11 @@ public class MainUI extends JDialog {
 //    }
 
     public MainUI(Project project) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ignored) {
+        }
+
         this.currentProject = project;
         String basePath = currentProject.getBasePath();
         this.curProjectPathTxt.setText(basePath);
@@ -252,6 +258,8 @@ public class MainUI extends JDialog {
     }
 
     private File openFileChooser(File currentDir) {
+
+
         JFileChooser fileChooser = new JFileChooser();
         if (null != currentDir) {
             fileChooser.setCurrentDirectory(currentDir);
@@ -425,7 +433,7 @@ public class MainUI extends JDialog {
         tipsProjectNameAndTextPane.setEnabled(true);
         tipsProjectNameAndTextPane.setText("tips:\n[project name] and [package name] must same as <project " +
                 "project-name=\"...\" package-name=\"...\"> when you create the project in your [Table Config] xml " +
-                "file.\n    you should correct this values to right if not match.");
+                "file.\nyou should correct this values to right if not match.");
         panel6.add(tipsProjectNameAndTextPane, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER,
                 GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints
                 .SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
