@@ -6,7 +6,7 @@ auto man is a tool to generate code. This allows you to build whole DDD-style pr
 Auto-Man can generate a Java project built by maven.
 the Java project includes 5 modules.
 
-```java
+```
 --foo-parent
     |-- foo-core
       |- domain  // data entity
