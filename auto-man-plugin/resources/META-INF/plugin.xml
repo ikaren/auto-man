@@ -1,0 +1,39 @@
+<idea-plugin>
+    <id>org.jason.automan.plugin</id>
+    <name>auto-man</name>
+    <version>1.0</version>
+    <vendor email="xiayuqing123@hotmail.com" url="https://github.com/xiayuqing/auto-man">Auto-Man</vendor>
+
+    <description><![CDATA[
+      auto man is a tool to generate code. This allows you to build whole DDD-style project and only need to write an xml.<br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Idea Plugin 1.0.<br>
+    ]]>
+    </change-notes>
+
+    <idea-version since-build="141.0"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable groupId="root" displayName="Auto Man Setting" id="automan.setting"
+                                 instance="org.jason.automan.plugin.AutoManConfigurable"/>
+        <applicationService serviceImplementation="org.jason.automan.plugin.AutoManPersistConfig"
+                            serviceInterface="org.jason.automan.plugin.AutoManPersistConfig"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="mainAction" class="org.jason.automan.plugin.action.MainAction" text="Auto-Man"
+                description="generate project code">
+            <add-to-group group-id="WindowMenu" anchor="first"/>
+        </action>
+    </actions>
+
+    <application-components>
+        <component>
+            <implementation-class>org.jason.automan.plugin.component.AppComponent</implementation-class>
+        </component>
+    </application-components>
+
+</idea-plugin>
